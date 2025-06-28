@@ -3,185 +3,221 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Programme Festival Écologie</title>
+  <title>TERRA Festival 2025 – 18ᵉ édition</title>
 
-  <!-- 1.  POLICES  : Inter (propre, lisible) -->
+  <!-- Google Fonts & Tailwind -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
-
-  <!-- 2.  TAILWIND CDN  (parfait pour GitHub Pages)  -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
       theme: {
         extend: {
-          fontFamily: {
-            sans: ['Inter', 'ui-sans-serif', 'system-ui'],
-          },
+          fontFamily: { sans: ['Inter', 'ui-sans-serif', 'system-ui'] },
+          colors: {
+            lamentin: '#10b981',   // green‑500
+            moule: '#3b82f6',      // blue‑500
+            saintclaude: '#14b8a6',// teal‑500
+            vieux: '#facc15',      // yellow‑400
+            baiemahault: '#ec4899',// pink‑500
+            goyave: '#a855f7',     // purple‑500
+            sainterose: '#059669', // emerald‑600
+          }
         }
       }
     }
   </script>
-
-  <!-- 3.  Styles maison -->
   <style>
-    /* On masque la barre de défilement horizontale des groupes de boutons */
     .no-scrollbar::-webkit-scrollbar { display: none; }
     .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
   </style>
 </head>
 <body class="bg-gray-50 font-sans antialiased text-gray-800">
-  <main class="container mx-auto px-4 py-10">
+  <!-- HEADER -->
+  <header class="text-center py-10">
+    <h1 class="text-4xl md:text-5xl font-extrabold text-green-700">TERRA Festival 2025</h1>
+    <p class="text-lg md:text-xl text-green-600 font-medium mt-2">18<sup>e</sup> édition</p>
+    <p class="text-xl italic mt-1 text-gray-700">« Terra ba tout' moun' »</p>
+  </header>
 
-    <!-- ============================ FILTRES ============================ -->
-    <section class="mb-10 space-y-4">
-      <!-- Filtres par jour -->
+  <main class="container mx-auto px-4 py-6">
+    <!-- INTRO -->
+    <section class="text-center max-w-3xl mx-auto mb-10">
+      <p class="text-md text-gray-600">Du <strong>11</strong> au <strong>13 juillet 2025</strong> – Projections, débats, bokantaj, spectacles &amp; rencontres dans toute la Guadeloupe : Baie‑Mahault, Le Moule, Goyave, Lamentin, Saint‑Claude, Vieux‑Habitants, Sainte‑Rose.</p>
+    </section>
+
+    <!-- FILTERS -->
+    <section class="space-y-4 mb-8">
+      <!-- Jours -->
       <div class="flex overflow-x-auto gap-2 no-scrollbar">
         <button data-day="all" class="btn-day px-4 py-2 rounded-lg font-medium min-w-max bg-green-600 text-white">Tous les jours</button>
-        <button data-day="friday" class="btn-day px-4 py-2 rounded-lg font-medium min-w-max bg-green-100 text-green-800">Vendredi</button>
-        <button data-day="saturday" class="btn-day px-4 py-2 rounded-lg font-medium min-w-max bg-green-100 text-green-800">Samedi</button>
-        <button data-day="sunday" class="btn-day px-4 py-2 rounded-lg font-medium min-w-max bg-green-100 text-green-800">Dimanche</button>
+        <button data-day="11" class="btn-day px-4 py-2 rounded-lg font-medium min-w-max bg-green-100 text-green-800">11 juillet</button>
+        <button data-day="12" class="btn-day px-4 py-2 rounded-lg font-medium min-w-max bg-green-100 text-green-800">12 juillet</button>
+        <button data-day="13" class="btn-day px-4 py-2 rounded-lg font-medium min-w-max bg-green-100 text-green-800">13 juillet</button>
       </div>
-
-      <!-- Filtres par lieu -->
+      <!-- Lieux -->
       <div class="flex overflow-x-auto gap-2 no-scrollbar">
         <button data-place="all" class="btn-place px-4 py-2 rounded-lg font-medium min-w-max bg-green-600 text-white">Tous les lieux</button>
-        <button data-place="cinema" class="btn-place px-4 py-2 rounded-lg font-medium min-w-max bg-blue-100 text-blue-800 hover:bg-blue-200">Cinéma Le Vert</button>
-        <button data-place="mediatheque" class="btn-place px-4 py-2 rounded-lg font-medium min-w-max bg-teal-100 text-teal-800 hover:bg-teal-200">Médiathèque Centrale</button>
-        <button data-place="parc" class="btn-place px-4 py-2 rounded-lg font-medium min-w-max bg-emerald-100 text-emerald-800 hover:bg-emerald-200">Parc Municipal</button>
+        <button data-place="lamentin" class="btn-place px-4 py-2 rounded-lg font-medium min-w-max bg-lamentin/20 text-lamentin hover:bg-lamentin/30">Lamentin</button>
+        <button data-place="moule" class="btn-place px-4 py-2 rounded-lg font-medium min-w-max bg-moule/20 text-moule hover:bg-moule/30">Le Moule</button>
+        <button data-place="saintclaude" class="btn-place px-4 py-2 rounded-lg font-medium min-w-max bg-saintclaude/20 text-saintclaude hover:bg-saintclaude/30">Saint‑Claude</button>
+        <button data-place="vieux" class="btn-place px-4 py-2 rounded-lg font-medium min-w-max bg-vieux/20 text-vieux hover:bg-vieux/30">Vieux‑Habitants</button>
+        <button data-place="baiemahault" class="btn-place px-4 py-2 rounded-lg font-medium min-w-max bg-baiemahault/20 text-baiemahault hover:bg-baiemahault/30">Baie‑Mahault</button>
+        <button data-place="goyave" class="btn-place px-4 py-2 rounded-lg font-medium min-w-max bg-goyave/20 text-goyave hover:bg-goyave/30">Goyave</button>
+        <button data-place="sainterose" class="btn-place px-4 py-2 rounded-lg font-medium min-w-max bg-sainterose/20 text-sainterose hover:bg-sainterose/30">Sainte‑Rose</button>
       </div>
     </section>
 
-    <!-- ============================ PROGRAMME ============================ -->
-
-    <!-- Vendredi -->
-    <section data-day-section="friday" class="mb-12">
-      <h2 class="text-2xl font-bold text-green-700 mb-6 flex items-center">
-        <!-- Icône calendrier -->
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+    <!-- COLLAPSIBLE MAP -->
+    <details class="mb-12">
+      <summary class="cursor-pointer text-xl font-semibold flex items-center gap-2 select-none">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        Carte simplifiée des lieux (cliquer pour afficher / masquer)
+      </summary>
+      <div class="mt-4 mx-auto" style="max-width:520px">
+        <!-- SIMPLE silhouette of Guadeloupe (Basse‑Terre & Grande‑Terre) -->
+        <svg viewBox="0 0 400 350" class="w-full h-auto rounded-lg shadow">
+          <!-- Grande‑Terre -->
+          <path d="M275 70 Q330 85 340 130 Q360 185 315 215 Q270 245 220 200 Q185 160 200 110 Q220 70 275 70 Z" fill="#d1fae5" />
+          <!-- Basse‑Terre -->
+          <path d="M85 220 Q40 180 60 130 Q80 80 140 90 Q190 100 175 160 Q160 220 120 240 Q100 245 85 220 Z" fill="#d1fae5" />
+          <!-- Markers (centroids approximatifs) -->
+          <g font-family="Inter, sans-serif" font-size="11" text-anchor="middle" dominant-baseline="middle">
+            <circle cx="150" cy="185" r="6" fill="#ec4899" /><text x="150" y="170" fill="#ec4899">Baie‑Mahault</text>
+            <circle cx="300" cy="155" r="6" fill="#3b82f6" /><text x="300" y="140" fill="#3b82f6">Le Moule</text>
+            <circle cx="165" cy="165" r="6" fill="#10b981" /><text x="165" y="150" fill="#10b981">Lamentin</text>
+            <circle cx="200" cy="215" r="6" fill="#a855f7" /><text x="200" y="230" fill="#a855f7">Goyave</text>
+            <circle cx="125" cy="215" r="6" fill="#14b8a6" /><text x="125" y="230" fill="#14b8a6">Saint‑Claude</text>
+            <circle cx="105" cy="200" r="6" fill="#facc15" /><text x="105" y="185" fill="#facc15">Vieux‑Habitants</text>
+            <circle cx="120" cy="145" r="6" fill="#059669" /><text x="120" y="130" fill="#059669">Sainte‑Rose</text>
+          </g>
         </svg>
-        Vendredi 14 Juin
-      </h2>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <!-- Carte 1 -->
-        <article class="event-card bg-white rounded-xl overflow-hidden shadow-md border-l-4 border-blue-500" data-location="cinema">
-          <div class="p-6">
-            <div class="flex justify-between items-start mb-3">
-              <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-sm font-medium">Cinéma Le Vert</span>
-              <time class="text-gray-600 font-medium">18h00</time>
-            </div>
-            <h3 class="text-xl font-bold text-gray-800 mb-2">Cérémonie d'ouverture</h3>
-            <p class="text-gray-600 mb-3">Discours d'ouverture et présentation du festival</p>
-            <div class="flex items-center text-gray-500 text-sm">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-              45 min
-            </div>
-          </div>
-        </article>
-
-        <!-- Carte 2 -->
-        <article class="event-card bg-white rounded-xl overflow-hidden shadow-md border-l-4 border-blue-500" data-location="cinema">
-          <div class="p-6">
-            <div class="flex justify-between items-start mb-3">
-              <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-sm font-medium">Cinéma Le Vert</span>
-              <time class="text-gray-600 font-medium">19h00</time>
-            </div>
-            <h3 class="text-xl font-bold text-gray-800 mb-2">Océans de Plastique</h3>
-            <p class="text-gray-600 mb-3">Documentaire sur la pollution plastique des océans</p>
-            <div class="flex items-center text-gray-500 text-sm">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-              90 min
-            </div>
-          </div>
-        </article>
-
-        <!-- Carte 3 -->
-        <article class="event-card bg-white rounded-xl overflow-hidden shadow-md border-l-4 border-teal-500" data-location="mediatheque">
-          <div class="p-6">
-            <div class="flex justify-between items-start mb-3">
-              <span class="bg-teal-100 text-teal-800 px-2 py-1 rounded text-sm font-medium">Médiathèque Centrale</span>
-              <time class="text-gray-600 font-medium">20h00</time>
-            </div>
-            <h3 class="text-xl font-bold text-gray-800 mb-2">Forêts Vivantes</h3>
-            <p class="text-gray-600 mb-3">Court-métrage sur la biodiversité forestière</p>
-            <div class="flex items-center text-gray-500 text-sm">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-              45 min
-            </div>
-          </div>
-        </article>
       </div>
-    </section>
+    </details>
 
-    <!-- Samedi : collez ici vos cartes / même structure -->
-    <section data-day-section="saturday" class="mb-12">
-      <h2 class="text-2xl font-bold text-green-700 mb-6 flex items-center">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-        </svg>
-        Samedi 15 Juin
-      </h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <!-- Vos cartes du samedi -->
-      </div>
-    </section>
+    <!-- PROGRAMME GROUPE PAR JOUR -->
+    <section class="space-y-14">
+      <!-- 11 juillet -->
+      <section data-day-section="11" class="space-y-6">
+        <h2 class="text-2xl font-bold text-green-700 flex items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>Vendredi 11 juillet</h2>
+        <div class="flex overflow-x-auto gap-6 no-scrollbar">
+          <!-- Lamentin / 18‑22h -->
+          <article class="event-card bg-white min-w-[280px] rounded-xl shadow border-l-4 border-lamentin" data-day="11" data-place="lamentin">
+            <div class="p-5">
+              <h3 class="font-bold text-lg mb-1">Lamentin – Médiathèque</h3>
+              <p class="text-sm text-gray-500 mb-2">18h00 – 22h00</p>
+              <p><em>Pie dan lo</em> &amp; <em>Yintah</em><br>Bokantaj – Claudie Pavis</p>
+              <p class="italic text-xs mt-1">Pot de la solidarité</p>
+            </div>
+          </article>
+        </div>
+      </section>
 
-    <!-- Dimanche : collez ici vos cartes / même structure -->
-    <section data-day-section="sunday" class="mb-12">
-      <h2 class="text-2xl font-bold text-green-700 mb-6 flex items-center">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-        </svg>
-        Dimanche 16 Juin
-      </h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <!-- Vos cartes du dimanche -->
-      </div>
+      <!-- 12 juillet -->
+      <section data-day-section="12" class="space-y-6">
+        <h2 class="text-2xl font-bold text-green-700 flex items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>Samedi 12 juillet</h2>
+        <div class="flex overflow-x-auto gap-6 no-scrollbar">
+          <!-- Lamentin 14‑16h30 -->
+          <article class="event-card bg-white min-w-[280px] rounded-xl shadow border-l-4 border-lamentin" data-day="12" data-place="lamentin">
+            <div class="p-5">
+              <h3 class="font-bold text-lg mb-1">Lamentin – Médiathèque</h3>
+              <p class="text-sm text-gray-500 mb-2">14h00 – 16h30</p>
+              <p><em>Terre de Femmes</em><br>Bokantaj – Eléonor Dalmat</p>
+            </div>
+          </article>
+          <!-- Lamentin 17‑20h30 -->
+          <article class="event-card bg-white min-w-[280px] rounded-xl shadow border-l-4 border-lamentin" data-day="12" data-place="lamentin">
+            <div class="p-5">
+              <h3 class="font-bold text-lg mb-1">Lamentin – Médiathèque</h3>
+              <p class="text-sm text-gray-500 mb-2">17h00 – 20h30</p>
+              <p><em>And Still It Remains</em> &amp; <em>Décolonisons l’écologie</em><br>Bokantaj – Damien Nicolas &amp; Yvelle Athalys Neel</p>
+            </div>
+          </article>
+          <!-- Le Moule 19‑21h30 -->
+          <article class="event-card bg-white min-w-[280px] rounded-xl shadow border-l-4 border-moule" data-day="12" data-place="moule">
+            <div class="p-5">
+              <h3 class="font-bold text-lg mb-1">Le Moule – Salle Lovson</h3>
+              <p class="text-sm text-gray-500 mb-2">19h00 – 21h30</p>
+              <p><em>Terre de Femmes</em><br>Bokantaj – Anaïs Verspan, Marie‑José Nagapin, Fiona Roche</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- 13 juillet -->
+      <section data-day-section="13" class="space-y-6">
+        <h2 class="text-2xl font-bold text-green-700 flex items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>Dimanche 13 juillet</h2>
+        <div class="flex overflow-x-auto gap-6 no-scrollbar">
+          <!-- Baie‑Mahault -->
+          <article class="event-card bg-white min-w-[280px] rounded-xl shadow border-l-4 border-baiemahault" data-day="13" data-place="baiemahault">
+            <div class="p-5">
+              <h3 class="font-bold text-lg mb-1">Baie‑Mahault – Bonnifieurs</h3>
+              <p class="text-sm text-gray-500 mb-2">9h00 – 12h00</p>
+              <p>Petit‑déj « Didiko &amp; courts‑métrages »<br><strong class="text-red-600">Inscription</strong></p>
+            </div>
+          </article>
+          <!-- Saint‑Claude -->
+          <article class="event-card bg-white min-w-[280px] rounded-xl shadow border-l-4 border-saintclaude" data-day="13" data-place="saintclaude">
+            <div class="p-5">
+              <h3 class="font-bold text-lg mb-1">Saint‑Claude – Parc National</h3>
+              <p class="text-sm text-gray-500 mb-2">14h00 – 18h00</p>
+              <p><em>Vivant</em> &amp; <em>Gorongosa</em><br><strong class="text-red-600">Inscription</strong></p>
+            </div>
+          </article>
+          <!-- Vieux‑Habitants -->
+          <article class="event-card bg-white min-w-[280px] rounded-xl shadow border-l-4 border-vieux" data-day="13" data-place="vieux">
+            <div class="p-5">
+              <h3 class="font-bold text-lg mb-1">Vieux‑Habitants – GwadaCircus</h3>
+              <p class="text-sm text-gray-500 mb-2">19h00 – 23h00</p>
+              <p>Spectacle <em>Ma maison brûle</em> + <em>Sœurs de la Terre</em></p>
+            </div>
+          </article>
+          <!-- Goyave -->
+          <article class="event-card bg-white min-w-[280px] rounded-xl shadow border-l-4 border-goyave" data-day="13" data-place="goyave">
+            <div class="p-5">
+              <h3 class="font-bold text-lg mb-1">Goyave – Jardin rivière</h3>
+              <p class="text-sm text-gray-500 mb-2">19h00 – 22h00</p>
+              <p><em>Décolonisons l’écologie</em><br><strong class="text-red-600">Inscription</strong></p>
+            </div>
+          </article>
+          <!-- Sainte‑Rose -->
+          <article class="event-card bg-white min-w-[280px] rounded-xl shadow border-l-4 border-sainterose" data-day="13" data-place="sainterose">
+            <div class="p-5">
+              <h3 class="font-bold text-lg mb-1">Sainte‑Rose – Sucrerie Nogent</h3>
+              <p class="text-sm text-gray-500 mb-2">18h00 – 20h00</p>
+              <p><em>Gorongosa</em> – Projection &amp; dîner (réservation)</p>
+            </div>
+          </article>
+        </div>
+      </section>
     </section>
   </main>
 
-  <!-- ============================ JAVASCRIPT ============================ -->
+  <!-- FILTER LOGIC -->
   <script>
-    // Fonction qui alterne les classes "actif" / "inactif" d'un groupe de boutons
-    function toggleActive(btn, selector) {
+    function toggleActive(btn, selector, activeBg) {
       document.querySelectorAll(selector).forEach(el => {
-        el.classList.remove('bg-green-600', 'text-white');
+        el.classList.remove(activeBg, 'text-white');
         el.classList.add('bg-green-100', 'text-green-800');
       });
       btn.classList.remove('bg-green-100', 'text-green-800');
-      btn.classList.add('bg-green-600', 'text-white');
+      btn.classList.add(activeBg, 'text-white');
     }
 
-    // Filtre par jour
+    // Filtre jour
     document.querySelectorAll('.btn-day').forEach(btn => {
       btn.addEventListener('click', () => {
         const day = btn.dataset.day;
-        toggleActive(btn, '.btn-day');
+        toggleActive(btn, '.btn-day', 'bg-green-600');
         document.querySelectorAll('[data-day-section]').forEach(sec => {
           sec.hidden = day !== 'all' && sec.dataset.daySection !== day;
         });
       });
     });
 
-    // Filtre par lieu
+    // Filtre lieu
     document.querySelectorAll('.btn-place').forEach(btn => {
       btn.addEventListener('click', () => {
         const place = btn.dataset.place;
-        toggleActive(btn, '.btn-place');
-        document.querySelectorAll('.event-card').forEach(card => {
-          card.hidden = place !== 'all' && card.dataset.location !== place;
-        });
-      });
-    });
-  </script>
-</body>
-</html>
+        toggleActive
