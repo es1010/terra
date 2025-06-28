@@ -1,0 +1,363 @@
+ <div class="mb-12">
+        <div class="flex overflow-x-auto pb-2 mb-4 gap-2">
+            <button id="btn-all" class="px-4 py-2 bg-green-600 text-white rounded-lg font-medium min-w-max">Tous les jours</button>
+            <button id="btn-friday" class="px-4 py-2 bg-green-100 text-green-800 rounded-lg font-medium min-w-max">Vendredi</button>
+            <button id="btn-saturday" class="px-4 py-2 bg-green-100 text-green-800 rounded-lg font-medium min-w-max">Samedi</button>
+            <button id="btn-sunday" class="px-4 py-2 bg-green-100 text-green-800 rounded-lg font-medium min-w-max">Dimanche</button>
+        </div>
+        
+        <div class="flex overflow-x-auto pb-2 gap-2">
+            <button id="btn-all-locations" class="px-4 py-2 bg-green-600 text-white rounded-lg font-medium min-w-max">Tous les lieux</button>
+            <button id="btn-cinema" class="px-4 py-2 bg-blue-100 text-blue-800 rounded-lg font-medium min-w-max">Cinéma Le Vert</button>
+            <button id="btn-mediatheque" class="px-4 py-2 bg-teal-100 text-teal-800 rounded-lg font-medium min-w-max">Médiathèque Centrale</button>
+            <button id="btn-parc" class="px-4 py-2 bg-emerald-100 text-emerald-800 rounded-lg font-medium min-w-max">Parc Municipal</button>
+        </div>
+    </div>
+
+    <!-- Vendredi -->
+    <div id="day-friday" class="mb-12">
+        <h2 class="text-2xl font-bold text-green-700 mb-6 flex items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+            </svg>
+            Vendredi 14 Juin
+        </h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="event-card bg-white rounded-xl overflow-hidden shadow-md border-l-4 border-blue-500" data-location="cinema">
+                <div class="p-6">
+                    <div class="flex justify-between items-start mb-3">
+                        <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-sm font-medium">Cinéma Le Vert</span>
+                        <span class="text-gray-600 font-medium">18h00</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Cérémonie d'ouverture</h3>
+                    <p class="text-gray-600 mb-3">Discours d'ouverture et présentation du festival</p>
+                    <div class="flex items-center text-gray-500 text-sm">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        45 min
+                    </div>
+                </div>
+            </div>
+
+            <div class="event-card bg-white rounded-xl overflow-hidden shadow-md border-l-4 border-blue-500" data-location="cinema">
+                <div class="p-6">
+                    <div class="flex justify-between items-start mb-3">
+                        <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-sm font-medium">Cinéma Le Vert</span>
+                        <span class="text-gray-600 font-medium">19h00</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Océans de Plastique</h3>
+                    <p class="text-gray-600 mb-3">Documentaire sur la pollution plastique des océans</p>
+                    <div class="flex items-center text-gray-500 text-sm">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        90 min
+                    </div>
+                </div>
+            </div>
+
+            <div class="event-card bg-white rounded-xl overflow-hidden shadow-md border-l-4 border-teal-500" data-location="mediatheque">
+                <div class="p-6">
+                    <div class="flex justify-between items-start mb-3">
+                        <span class="bg-teal-100 text-teal-800 px-2 py-1 rounded text-sm font-medium">Médiathèque Centrale</span>
+                        <span class="text-gray-600 font-medium">20h00</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Forêts Vivantes</h3>
+                    <p class="text-gray-600 mb-3">Court-métrage sur la biodiversité forestière</p>
+                    <div class="flex items-center text-gray-500 text-sm">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        45 min
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Samedi -->
+    <div id="day-saturday" class="mb-12">
+        <h2 class="text-2xl font-bold text-green-700 mb-6 flex items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+            </svg>
+            Samedi 15 Juin
+        </h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="event-card bg-white rounded-xl overflow-hidden shadow-md border-l-4 border-blue-500" data-location="cinema">
+                <div class="p-6">
+                    <div class="flex justify-between items-start mb-3">
+                        <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-sm font-medium">Cinéma Le Vert</span>
+                        <span class="text-gray-600 font-medium">10h00</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Demain</h3>
+                    <p class="text-gray-600 mb-3">Documentaire sur les solutions écologiques</p>
+                    <div class="flex items-center text-gray-500 text-sm">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        120 min
+                    </div>
+                </div>
+            </div>
+
+            <div class="event-card bg-white rounded-xl overflow-hidden shadow-md border-l-4 border-teal-500" data-location="mediatheque">
+                <div class="p-6">
+                    <div class="flex justify-between items-start mb-3">
+                        <span class="bg-teal-100 text-teal-800 px-2 py-1 rounded text-sm font-medium">Médiathèque Centrale</span>
+                        <span class="text-gray-600 font-medium">14h00</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Atelier Jeunesse</h3>
+                    <p class="text-gray-600 mb-3">Films d'animation et atelier pour enfants</p>
+                    <div class="flex items-center text-gray-500 text-sm">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        60 min
+                    </div>
+                </div>
+            </div>
+
+            <div class="event-card bg-white rounded-xl overflow-hidden shadow-md border-l-4 border-emerald-500" data-location="parc">
+                <div class="p-6">
+                    <div class="flex justify-between items-start mb-3">
+                        <span class="bg-emerald-100 text-emerald-800 px-2 py-1 rounded text-sm font-medium">Parc Municipal</span>
+                        <span class="text-gray-600 font-medium">16h00</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Ciné Plein Air</h3>
+                    <p class="text-gray-600 mb-3">Projection en plein air de courts-métrages</p>
+                    <div class="flex items-center text-gray-500 text-sm">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        120 min
+                    </div>
+                </div>
+            </div>
+
+            <div class="event-card bg-white rounded-xl overflow-hidden shadow-md border-l-4 border-blue-500" data-location="cinema">
+                <div class="p-6">
+                    <div class="flex justify-between items-start mb-3">
+                        <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-sm font-medium">Cinéma Le Vert</span>
+                        <span class="text-gray-600 font-medium">19h00</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Rencontre avec réalisateur</h3>
+                    <p class="text-gray-600 mb-3">Projection suivie d'un débat avec le réalisateur</p>
+                    <div class="flex items-center text-gray-500 text-sm">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        150 min
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dimanche -->
+    <div id="day-sunday" class="mb-12">
+        <h2 class="text-2xl font-bold text-green-700 mb-6 flex items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+            </svg>
+            Dimanche 16 Juin
+        </h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="event-card bg-white rounded-xl overflow-hidden shadow-md border-l-4 border-teal-500" data-location="mediatheque">
+                <div class="p-6">
+                    <div class="flex justify-between items-start mb-3">
+                        <span class="bg-teal-100 text-teal-800 px-2 py-1 rounded text-sm font-medium">Médiathèque Centrale</span>
+                        <span class="text-gray-600 font-medium">11h00</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Table ronde</h3>
+                    <p class="text-gray-600 mb-3">Discussion sur l'écologie au cinéma</p>
+                    <div class="flex items-center text-gray-500 text-sm">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        90 min
+                    </div>
+                </div>
+            </div>
+
+            <div class="event-card bg-white rounded-xl overflow-hidden shadow-md border-l-4 border-emerald-500" data-location="parc">
+                <div class="p-6">
+                    <div class="flex justify-between items-start mb-3">
+                        <span class="bg-emerald-100 text-emerald-800 px-2 py-1 rounded text-sm font-medium">Parc Municipal</span>
+                        <span class="text-gray-600 font-medium">14h00</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Ciné-Concert</h3>
+                    <p class="text-gray-600 mb-3">Projection avec musique live</p>
+                    <div class="flex items-center text-gray-500 text-sm">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        75 min
+                    </div>
+                </div>
+            </div>
+
+            <div class="event-card bg-white rounded-xl overflow-hidden shadow-md border-l-4 border-blue-500" data-location="cinema">
+                <div class="p-6">
+                    <div class="flex justify-between items-start mb-3">
+                        <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-sm font-medium">Cinéma Le Vert</span>
+                        <span class="text-gray-600 font-medium">17h00</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Cérémonie de clôture</h3>
+                    <p class="text-gray-600 mb-3">Remise des prix et film de clôture</p>
+                    <div class="flex items-center text-gray-500 text-sm">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        120 min
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Filtres par jour
+        const btnAll = document.getElementById('btn-all');
+        const btnFriday = document.getElementById('btn-friday');
+        const btnSaturday = document.getElementById('btn-saturday');
+        const btnSunday = document.getElementById('btn-sunday');
+        
+        const dayFriday = document.getElementById('day-friday');
+        const daySaturday = document.getElementById('day-saturday');
+        const daySunday = document.getElementById('day-sunday');
+        
+        // Filtres par lieu
+        const btnAllLocations = document.getElementById('btn-all-locations');
+        const btnCinema = document.getElementById('btn-cinema');
+        const btnMediatheque = document.getElementById('btn-mediatheque');
+        const btnParc = document.getElementById('btn-parc');
+        
+        const allEvents = document.querySelectorAll('.event-card');
+        
+        // Fonction pour réinitialiser les styles des boutons de jour
+        function resetDayButtons() {
+            [btnAll, btnFriday, btnSaturday, btnSunday].forEach(btn => {
+                btn.classList.remove('bg-green-600', 'text-white');
+                btn.classList.add('bg-green-100', 'text-green-800');
+            });
+        }
+        
+        // Fonction pour réinitialiser les styles des boutons de lieu
+        function resetLocationButtons() {
+            [btnAllLocations, btnCinema, btnMediatheque, btnParc].forEach(btn => {
+                btn.classList.remove('bg-green-600', 'text-white');
+                btn.classList.add('bg-green-100', 'text-green-800');
+            });
+            
+            btnCinema.classList.remove('bg-green-100');
+            btnCinema.classList.add('bg-blue-100', 'text-blue-800');
+            
+            btnMediatheque.classList.remove('bg-green-100');
+            btnMediatheque.classList.add('bg-teal-100', 'text-teal-800');
+            
+            btnParc.classList.remove('bg-green-100');
+            btnParc.classList.add('bg-emerald-100', 'text-emerald-800');
+        }
+        
+        // Filtrage par jour
+        btnAll.addEventListener('click', function() {
+            resetDayButtons();
+            this.classList.remove('bg-green-100', 'text-green-800');
+            this.classList.add('bg-green-600', 'text-white');
+            
+            dayFriday.style.display = 'block';
+            daySaturday.style.display = 'block';
+            daySunday.style.display = 'block';
+        });
+        
+        btnFriday.addEventListener('click', function() {
+            resetDayButtons();
+            this.classList.remove('bg-green-100', 'text-green-800');
+            this.classList.add('bg-green-600', 'text-white');
+            
+            dayFriday.style.display = 'block';
+            daySaturday.style.display = 'none';
+            daySunday.style.display = 'none';
+        });
+        
+        btnSaturday.addEventListener('click', function() {
+            resetDayButtons();
+            this.classList.remove('bg-green-100', 'text-green-800');
+            this.classList.add('bg-green-600', 'text-white');
+            
+            dayFriday.style.display = 'none';
+            daySaturday.style.display = 'block';
+            daySunday.style.display = 'none';
+        });
+        
+        btnSunday.addEventListener('click', function() {
+            resetDayButtons();
+            this.classList.remove('bg-green-100', 'text-green-800');
+            this.classList.add('bg-green-600', 'text-white');
+            
+            dayFriday.style.display = 'none';
+            daySaturday.style.display = 'none';
+            daySunday.style.display = 'block';
+        });
+        
+        // Filtrage par lieu
+        btnAllLocations.addEventListener('click', function() {
+            resetLocationButtons();
+            this.classList.remove('bg-green-100', 'text-green-800');
+            this.classList.add('bg-green-600', 'text-white');
+            
+            allEvents.forEach(event => {
+                event.style.display = 'block';
+            });
+        });
+        
+        btnCinema.addEventListener('click', function() {
+            resetLocationButtons();
+            this.classList.remove('bg-blue-100', 'text-blue-800');
+            this.classList.add('bg-green-600', 'text-white');
+            
+            allEvents.forEach(event => {
+                if (event.getAttribute('data-location') === 'cinema') {
+                    event.style.display = 'block';
+                } else {
+                    event.style.display = 'none';
+                }
+            });
+        });
+        
+        btnMediatheque.addEventListener('click', function() {
+            resetLocationButtons();
+            this.classList.remove('bg-teal-100', 'text-teal-800');
+            this.classList.add('bg-green-600', 'text-white');
+            
+            allEvents.forEach(event => {
+                if (event.getAttribute('data-location') === 'mediatheque') {
+                    event.style.display = 'block';
+                } else {
+                    event.style.display = 'none';
+                }
+            });
+        });
+        
+        btnParc.addEventListener('click', function() {
+            resetLocationButtons();
+            this.classList.remove('bg-emerald-100', 'text-emerald-800');
+            this.classList.add('bg-green-600', 'text-white');
+            
+            allEvents.forEach(event => {
+                if (event.getAttribute('data-location') === 'parc') {
+                    event.style.display = 'block';
+                } else {
+                    event.style.display = 'none';
+                }
+            });
+        });
+    });
+</script>
