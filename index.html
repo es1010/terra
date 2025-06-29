@@ -4,6 +4,18 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>TERRA Festival 2025 – 18ᵉ édition</title>
+<!-- Leaflet CSS & JS -->
+<link
+  rel="stylesheet"
+  href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+  integrity="sha256-sA+qwYqkD3D5dlpVDXlZoGgvYBvCkV5z2tm7YV2bQpA="
+  crossorigin=""
+/>
+<script
+  src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+  integrity="sha256-oH+m3T2XAb+EboiWydJfXfS7iBbS0ObJjHZn3X1sjtk="
+  crossorigin=""
+></script>
 
   <!-- Polices & Tailwind -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -74,8 +86,14 @@
         <img src="Programme_complet_TERRA.png" alt="Programme complet Terra Festival" class="rounded shadow-md max-w-full mx-auto">
       </div>
       <div id="map-container" class="hidden transition-all duration-300 ease-in-out">
-        <img src="carte_TERRA.png" alt="Carte Terra Festival" class="rounded shadow-md max-w-full mx-auto">
-      </div>
+  <div class="flex flex-col lg:flex-row gap-4 items-start">
+    <!-- Image PNG -->
+    <img src="carte_TERRA.png" alt="Carte Terra Festival" class="rounded shadow-md max-w-full lg:w-1/2 mx-auto" />
+    
+    <!-- Carte interactive -->
+    <div id="map" class="w-full h-[400px] lg:w-1/2 rounded shadow-md"></div>
+  </div>
+</div>
     </section>
 
     <!-- PROGRAMMATION DÉTAILLÉE -->
@@ -219,13 +237,18 @@
 
   // Carte des lieux : show/hide
   document.getElementById('toggle-map').addEventListener('click', () => {
-    const box = document.getElementById('map-container');
-    const btn = document.getElementById('toggle-map');
-    box.classList.toggle('hidden');
-    btn.textContent = box.classList.contains('hidden')
-      ? 'Afficher la carte des lieux'
-      : 'Masquer la carte des lieux';
-  });
+  const box = document.getElementById('map-container');
+  const btn = document.getElementById('toggle-map');
+  box.classList.toggle('hidden');
+  btn.textContent = box.classList.contains('hidden')
+    ? 'Afficher la carte des lieux'
+    : 'Masquer la carte des lieux';
+
+  if (!box.classList.contains('hidden')) {
+    // « réveille » Leaflet
+    setTimeout(() => map.invalidateSize(), 100);
+  }
+});
 
   // Utilitaire : gérer les boutons actifs
   function toggleActive(activeBtn, selector, activeClass) {
@@ -259,5 +282,57 @@
     });
   });
   </script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  /* --- 1. Carte de base ------------------------------ */
+  const map = L.map("leaflet-map", { scrollWheelZoom: false })
+              .setView([16.25, -61.55], 10);
+
+  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    attribution: "© OpenStreetMap contrib.",
+    maxZoom: 19
+  }).addTo(map);
+
+  /* --- 2. Lieux -------------------------------------- */
+  const spots = [
+    { name: "Le Lamentin – Médiathèque",   lat: 16.273495, lon: -61.634856, color: "lamentin"   },
+    { name: "Le Moule – Salle Robert Loyson", lat: 16.332073, lon: -61.346476, color: "moule"      },
+    { name: "Baie‑Mahault – Les Bonnifieurs", lat: 16.245125, lon: -61.554648, color: "baiemahault"},
+    { name: "Saint‑Claude – Maison du Parc",  lat: 16.016245, lon: -61.707115, color: "saintclaude"},
+    { name: "Vieux‑Habitants – GwadaCircus",  lat: 16.079538, lon: -61.766349, color: "vieux"      },
+    { name: "Sainte‑Rose – Sucrerie de Nogent",lat:16.354517, lon: -61.735525, color: "sainterose" },
+    { name: "Goyave – Chez Nel",             lat: 16.123093, lon: -61.593207, color: "goyave"     }
+  ];
+
+  /* --- 3. Marqueurs ---------------------------------- */
+  const tailwindColors = {
+    lamentin:   "#f97316",
+    moule:      "#f9a8d4",
+    baiemahault:"#db2777",
+    saintclaude:"#16a34a",
+    vieux:      "#9333ea",
+    sainterose: "#c084fc",
+    goyave:     "#2563eb"
+  };
+
+  spots.forEach(s => {
+    const marker = L.circleMarker([s.lat, s.lon], {
+      radius: 8,
+      weight: 2,
+      color: tailwindColors[s.color],
+      fillColor: tailwindColors[s.color],
+      fillOpacity: 0.8
+    }).addTo(map);
+
+    marker.bindPopup(`<strong>${s.name}</strong>`);
+  });
+
+  /* --- 4. Ajustement automatique --------------------- */
+  const group = L.featureGroup(
+    spots.map(s => L.circleMarker([s.lat, s.lon]))
+  );
+  map.fitBounds(group.getBounds().pad(0.25));
+});
+</script>
 </body>
 </html>
