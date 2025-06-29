@@ -13,6 +13,29 @@
     --tw-prose-goyave: #2563eb;
     --tw-prose-sainterose: #c084fc;
   }
+
+  /* ≡≡ Icône “goutte inversée” générique =============================== */
+  .pin-label {
+    position: relative;
+    font: 600 12px/1.2 "Inter", sans-serif;
+    color: #fff;
+    padding: 4px 10px;
+    border-radius: 6px;
+    background: var(--c, #16a34a);   /* couleur injectée via --c */
+    box-shadow: 0 2px 6px rgba(0,0,0,.25);
+    white-space: nowrap;
+  }
+  .pin-label::after {               /* petite pointe du bas */
+    content: "";
+    position: absolute;
+    left: 50%;
+    translate: -50% 0;
+    bottom: -6px;
+    width: 12px; height: 12px;
+    background: var(--c, #16a34a);
+    transform: rotate(45deg);
+    border-radius: 0 0 2px 0;
+  }
 </style>
 <!-- CSS de Tailwind -->
   <link href="tailwind.css" rel="stylesheet">
@@ -295,99 +318,81 @@ let leafletMap;
   });
   </script>
 <script>
-/* ----------------------------------------------------------- */
-/*  CONFIG                                                     */
-/* ----------------------------------------------------------- */
-const spots = [
-  { key: 'lamentin',    name: 'Le Lamentin – Médiathèque du Lamentin',    lat: 16.2735, lon: -61.6349 },
-  { key: 'moule',       name: 'Le Moule – Salle Robert Loyson',           lat: 16.3321, lon: -61.3465 },
-  { key: 'saintclaude', name: 'Saint‑Claude – Maison du Parc National',   lat: 16.0162, lon: -61.7071 },
-  { key: 'vieux',       name: 'Vieux‑Habitants – GwadaCircus',            lat: 16.0795, lon: -61.7663 },
-  { key: 'baiemahault', name: 'Baie‑Mahault – Les Bonnifieurs (Jarry)',   lat: 16.2451, lon: -61.5546 },
-  { key: 'goyave',      name: 'Goyave – Chez Nel',                        lat: 16.1231, lon: -61.5932 },
-  { key: 'sainterose',  name: 'Sainte‑Rose – Sucrerie de Nogent',         lat: 16.3545, lon: -61.7355 }
-];
+  document.addEventListener("DOMContentLoaded", function () {
+    const map = L.map("leaflet-map").setView([16.25, -61.55], 10); // Zoom sur la Guadeloupe
 
-/* ----------------------------------------------------------- */
-/*  OUTILS                                                     */
-/* ----------------------------------------------------------- */
-function colorFor(key, fallback) {
-  // lit la variable CSS définie dans :root (--tw-prose-*)
-  const c = getComputedStyle(document.documentElement)
-              .getPropertyValue(`--tw-prose-${key}`)
-              .trim();
-  return c || fallback || '#38bdf8';
-}
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    }).addTo(map);
 
-function dropIcon(hex, label) {
+    const lieux = {
+      lamentin: {
+        name: "Le Lamentin – Médiathèque du Lamentin",
+        coords: [16.2716, -61.5907],
+        color: "orange"
+      },
+      moule: {
+        name: "Le Moule – Salle Robert Loyson",
+        coords: [16.3377, -61.3479],
+        color: "pink"
+      },
+      saintclaude: {
+        name: "Saint‑Claude – Maison du Parc National",
+        coords: [16.005, -61.705],
+        color: "green"
+      },
+      vieux: {
+        name: "Vieux‑Habitants – Chapiteau GwadaCircus",
+        coords: [16.05, -61.75],
+        color: "purple"
+      },
+      baiemahault: {
+        name: "Baie‑Mahault – Les Bonnifieurs (Jarry)",
+        coords: [16.2447, -61.5625],
+        color: "fuchsia"
+      },
+      goyave: {
+        name: "Goyave – Chez Nel",
+        coords: [16.137, -61.618],
+        color: "blue"
+      },
+      sainterose: {
+        name: "Sainte‑Rose – Sucrerie de Nogent",
+        coords: [16.3333, -61.7],
+        color: "violet"
+      }
+    };
+
+  /* 1 / Fabrique d’icône “goutte inversée” avec couleur & libellé       */
+function makeDropIcon(hexColor, fullLabel) {
   return L.divIcon({
-    className: '',        // on gère tout en inline
-    iconAnchor: [12, 36], // pointe de la goutte
-    popupAnchor: [0, -32],
+    className: "",                        // pas de classe Leaflet par défaut
+    iconSize: [120, 48],                  // zone “cliquable”
+    iconAnchor: [60, 48],                 // pointe pile sur la coordonnée
+    popupAnchor: [0, -48],
     html: `
-      <div style="position:relative; transform:translate(-50%,-100%);">
-        <div style="
-          background:${hex};
-          color:#fff;
-          padding:4px 10px;
-          border-radius:6px 6px 3px 3px;
-          font-size:12px;
-          font-weight:600;
-          white-space:nowrap;
-          box-shadow:0 2px 6px rgba(0,0,0,.25);
-        ">${label}</div>
-        <div style="
-          position:absolute;
-          left:50%; top:100%;
-          width:0; height:0;
-          transform:translateX(-50%);
-          border:8px solid transparent;
-          border-top-color:${hex};
-        "></div>
+      <div class="pin-label" style="--c:${hexColor}">
+        ${fullLabel}
       </div>`
   });
 }
 
-/* ----------------------------------------------------------- */
-/*  INITIALISATION QUAND ON CLIQUE “Afficher la carte”         */
-/* ----------------------------------------------------------- */
-let leafletMap = null;
+/* 2 / Boucle d’ajout des marqueurs ---------------------------------- */
+for (const key in lieux) {
+  const lieu        = lieux[key];
+  const cssVarColor = getComputedStyle(document.documentElement)
+                      .getPropertyValue(`--tw-prose-${key}`)
+                      .trim();                         // depuis tes variables :root
+  const color       = cssVarColor || lieu.color;       // secours : couleur fixe
 
-document.getElementById('toggle-map').addEventListener('click', () => {
-  const box = document.getElementById('map-container');
-  const shown = !box.classList.toggle('hidden');
+  L.marker(lieu.coords, {
+    icon: makeDropIcon(color, lieu.name)
+  }).addTo(map);
+}
 
-  if (shown && !leafletMap) {
-    // 1. Crée la carte
-    leafletMap = L.map('leaflet-map', { scrollWheelZoom: false })
-                  .setView([16.25, -61.55], 10);
-
-    // 2. Tuiles OSM
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      maxZoom: 19,
-      attribution:
-        '&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors'
-    }).addTo(leafletMap);
-
-    // 3. Marqueurs
-    spots.forEach(s => {
-      L.marker([s.lat, s.lon], {
-        icon: dropIcon(colorFor(s.key), s.name)
-      }).addTo(leafletMap);
-    });
-
-    // 4. Ajuste sur tous les points
-    leafletMap.fitBounds(spots.map(s => [s.lat, s.lon]).map(L.latLng).reduce(
-      (b, p) => b.extend(p), L.latLngBounds([spots[0].lat, spots[0].lon]))
-      .pad(0.2)
-    );
-  }
-
-  // Si la carte existe déjà (resize après animation Tailwind)
-  if (shown && leafletMap) {
-    setTimeout(() => leafletMap.invalidateSize(), 200);
-  }
-});
+/* 3 / (facultatif) Adapter le zoom à tous les points ---------------- */
+const bounds = L.latLngBounds(Object.values(lieux).map(l => l.coords));
+map.fitBounds(bounds.pad(0.25));
 </script>
 </body>
 </html>
