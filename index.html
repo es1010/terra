@@ -295,66 +295,99 @@ let leafletMap;
   });
   </script>
 <script>
-   document.addEventListener("DOMContentLoaded", function () {
-    const map = L.map("leaflet-map").setView([16.25, -61.55], 9); // Coordonnées centrées sur la Guadeloupe
+/* ----------------------------------------------------------- */
+/*  CONFIG                                                     */
+/* ----------------------------------------------------------- */
+const spots = [
+  { key: 'lamentin',    name: 'Le Lamentin – Médiathèque du Lamentin',    lat: 16.2735, lon: -61.6349 },
+  { key: 'moule',       name: 'Le Moule – Salle Robert Loyson',           lat: 16.3321, lon: -61.3465 },
+  { key: 'saintclaude', name: 'Saint‑Claude – Maison du Parc National',   lat: 16.0162, lon: -61.7071 },
+  { key: 'vieux',       name: 'Vieux‑Habitants – GwadaCircus',            lat: 16.0795, lon: -61.7663 },
+  { key: 'baiemahault', name: 'Baie‑Mahault – Les Bonnifieurs (Jarry)',   lat: 16.2451, lon: -61.5546 },
+  { key: 'goyave',      name: 'Goyave – Chez Nel',                        lat: 16.1231, lon: -61.5932 },
+  { key: 'sainterose',  name: 'Sainte‑Rose – Sucrerie de Nogent',         lat: 16.3545, lon: -61.7355 }
+];
 
-    // 👉 Fond de carte OpenStreetMap
+/* ----------------------------------------------------------- */
+/*  OUTILS                                                     */
+/* ----------------------------------------------------------- */
+function colorFor(key, fallback) {
+  // lit la variable CSS définie dans :root (--tw-prose-*)
+  const c = getComputedStyle(document.documentElement)
+              .getPropertyValue(`--tw-prose-${key}`)
+              .trim();
+  return c || fallback || '#38bdf8';
+}
+
+function dropIcon(hex, label) {
+  return L.divIcon({
+    className: '',        // on gère tout en inline
+    iconAnchor: [12, 36], // pointe de la goutte
+    popupAnchor: [0, -32],
+    html: `
+      <div style="position:relative; transform:translate(-50%,-100%);">
+        <div style="
+          background:${hex};
+          color:#fff;
+          padding:4px 10px;
+          border-radius:6px 6px 3px 3px;
+          font-size:12px;
+          font-weight:600;
+          white-space:nowrap;
+          box-shadow:0 2px 6px rgba(0,0,0,.25);
+        ">${label}</div>
+        <div style="
+          position:absolute;
+          left:50%; top:100%;
+          width:0; height:0;
+          transform:translateX(-50%);
+          border:8px solid transparent;
+          border-top-color:${hex};
+        "></div>
+      </div>`
+  });
+}
+
+/* ----------------------------------------------------------- */
+/*  INITIALISATION QUAND ON CLIQUE “Afficher la carte”         */
+/* ----------------------------------------------------------- */
+let leafletMap = null;
+
+document.getElementById('toggle-map').addEventListener('click', () => {
+  const box = document.getElementById('map-container');
+  const shown = !box.classList.toggle('hidden');
+
+  if (shown && !leafletMap) {
+    // 1. Crée la carte
+    leafletMap = L.map('leaflet-map', { scrollWheelZoom: false })
+                  .setView([16.25, -61.55], 10);
+
+    // 2. Tuiles OSM
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
       attribution:
-        '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-    }).addTo(leafletmap);
+        '&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors'
+    }).addTo(leafletMap);
 
-      /* ---- données lieux ---- */
-      const spots=[
-        {key:'lamentin',   name:'Le Lamentin – Médiathèque du Lamentin',    lat:16.2735, lon:-61.6349},
-        {key:'moule',      name:'Le Moule – Salle Robert Loyson',           lat:16.3321, lon:-61.3465},
-        {key:'saintclaude',name:'Saint‑Claude – Maison du Parc National',   lat:16.0162, lon:-61.7071},
-        {key:'vieux',      name:'Vieux‑Habitants – GwadaCircus',            lat:16.0795, lon:-61.7663},
-        {key:'baiemahault',name:'Baie‑Mahault – Les Bonnifieurs (Jarry)',   lat:16.2451, lon:-61.5546},
-        {key:'goyave',     name:'Goyave – Chez Nel',                        lat:16.1231, lon:-61.5932},
-        {key:'sainterose', name:'Sainte‑Rose – Sucrerie de Nogent',         lat:16.3545, lon:-61.7355}
-      ];
-
-      /* ---- fabrique d’icônes “goutte colorée” ------- */
-      function pinIcon(hex,name){
-        return L.divIcon({
-          iconAnchor:[12,36],      // pointe de la goutte
-          popupAnchor:[0,-32],
-          className:'',
-          html:`
-          <div style="position:relative; width:max-content; transform:translate(-50%,-100%);">
-            <div style="
-              background:${hex};
-              color:#fff;
-              padding:4px 8px;
-              border-radius:6px 6px 3px 3px;
-              font-size:12px;
-              font-weight:600;
-              white-space:nowrap;
-            ">${name}</div>
-            <div style="
-              position:absolute;
-              left:50%; transform:translateX(-50%);
-              width:0; height:0;
-              border:8px solid transparent;
-              border-top-color:${hex};
-              top:100%;
-            "></div>
-          </div>`
-        });
-      }
-
-      /* ---- ajout des marqueurs ---- */
-      spots.forEach(s=>{
-        const color=getComputedStyle(document.documentElement)
-                     .getPropertyValue(`--cl-${s.key}`).trim();
-        L.marker([s.lat,s.lon],{icon:pinIcon(color,s.name)}).addTo(leafletMap);
-      });
-
-      /* ---- vue englobante ---- */
-      const bounds=L.latLngBounds(spots.map(s=>[s.lat,s.lon]));
-      leafletMap.fitBounds(bounds.pad(0.25));
+    // 3. Marqueurs
+    spots.forEach(s => {
+      L.marker([s.lat, s.lon], {
+        icon: dropIcon(colorFor(s.key), s.name)
+      }).addTo(leafletMap);
     });
+
+    // 4. Ajuste sur tous les points
+    leafletMap.fitBounds(spots.map(s => [s.lat, s.lon]).map(L.latLng).reduce(
+      (b, p) => b.extend(p), L.latLngBounds([spots[0].lat, spots[0].lon]))
+      .pad(0.2)
+    );
+  }
+
+  // Si la carte existe déjà (resize après animation Tailwind)
+  if (shown && leafletMap) {
+    setTimeout(() => leafletMap.invalidateSize(), 200);
+  }
+});
 </script>
 </body>
 </html>
