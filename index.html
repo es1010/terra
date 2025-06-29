@@ -38,8 +38,8 @@
 <body class="bg-gray-50 font-sans antialiased text-gray-800">
   <!-- Couverture -->
   <header class="mb-8">
-  <img src="COUVERTURE%20FB.png" alt="Couverture Terra Festival" class="w-full max-w-3xl mx-auto rounded shadow">
-</header>
+    <img src="COUVERTURE%20FB.png" alt="Couverture Terra Festival" class="w-full max-w-3xl mx-auto rounded shadow">
+  </header>
 
   <main class="container mx-auto px-4 py-6">
     <!-- Filtres -->
@@ -63,52 +63,59 @@
     </section>
 
     <!-- SECTION  Programme + Carte + Brochure ------------------------------------>
-<section class="mb-8">
-  <!-- Boutons -->
-  <div class="flex flex-wrap gap-4 mb-4">
-    <!-- Programme complet -->
-    <button id="toggle-programme"
-            class="px-6 py-3 bg-yellow-100 text-yellow-800 rounded hover:bg-yellow-200 text-lg font-semibold">
-      Afficher le programme complet
-    </button>
+    <section class="mb-8">
+      <!-- Boutons -->
+      <div class="flex flex-wrap gap-4 mb-4">
+        <!-- Programme complet -->
+        <button id="toggle-programme"
+                class="px-6 py-3 bg-yellow-100 text-yellow-800 rounded hover:bg-yellow-200 text-lg font-semibold">
+          Afficher le programme complet
+        </button>
 
-    <!-- Carte des lieux -->
-    <button id="toggle-map"
-            class="px-6 py-3 bg-green-100 text-green-800 rounded hover:bg-green-200 text-lg font-semibold">
-      Afficher la carte des lieux
-    </button>
+        <!-- Carte des lieux -->
+        <button id="toggle-map"
+                class="px-6 py-3 bg-green-100 text-green-800 rounded hover:bg-green-200 text-lg font-semibold">
+          Afficher la carte des lieux
+        </button>
 
-    <!-- Brochure -->
-    <a href="https://www.calameo.com/read/XXXXXXXX" target="_blank"
-       class="px-6 py-3 bg-purple-100 text-purple-800 rounded hover:bg-purple-200 text-lg font-semibold">
-      Lire la brochure
-    </a>
-  </div>
+        <!-- Brochure -->
+        <a href="https://www.calameo.com/read/XXXXXXXX" target="_blank"
+           class="px-6 py-3 bg-purple-100 text-purple-800 rounded hover:bg-purple-200 text-lg font-semibold">
+          Lire la brochure
+        </a>
+      </div>
 
-  <!-- Image : Programme complet -->
-  <div id="programme-container" class="hidden transition-all duration-300 ease-in-out mb-4">
-    <img src="Programme_complet_TERRA.png"
-         alt="Programme complet Terra Festival"
-         class="rounded shadow-md max-w-full mx-auto">
-  </div>
+      <!-- Image : Programme complet -->
+      <div id="programme-container" class="hidden transition-all duration-300 ease-in-out mb-4">
+        <img src="Programme_complet_TERRA.png"
+             alt="Programme complet Terra Festival"
+             class="rounded shadow-md max-w-full mx-auto">
+      </div>
 
-  <!-- Image : Carte -->
-  <div id="map-container" class="hidden transition-all duration-300 ease-in-out">
-    <img src="carte_TERRA.png"
-         alt="Carte Terra Festival"
-         class="rounded shadow-md max-w-full mx-auto">
-  </div>
-</section>
+      <!-- Image : Carte -->
+      <div id="map-container" class="hidden transition-all duration-300 ease-in-out">
+        <img src="carte_TERRA.png"
+             alt="Carte Terra Festival"
+             class="rounded shadow-md max-w-full mx-auto">
+      </div>
+    </section>
 
     <!-- PROGRAMMATION -->
     <!-- 11 juillet -->
     <section data-day-section="11" class="mb-12">
       <h2 class="text-2xl font-bold text-green-700 mb-6">Vendredi 11 juillet</h2>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Lamentin -->
         <article class="event-card bg-white rounded-xl shadow-md border-l-4 border-lamentin p-6" data-place="lamentin">
-          <h3 class="text-xl font-bold">Pie dan lo &amp; Yintah</h3>
+          <h3 class="text-xl font-bold">Pié Dan Lo &amp; Yintah</h3>
           <p class="text-gray-500 text-sm mb-1">Lamentin • 18h00‑22h00</p>
           <p>Films + bokantaj avec Claudie Pavis</p>
+        </article>
+        <!-- Le Moule -->
+        <article class="event-card bg-white rounded-xl shadow-md border-l-4 border-moule p-6" data-place="moule">
+          <h3 class="text-xl font-bold">Terre de Femmes</h3>
+          <p class="text-gray-500 text-sm mb-1">Le Moule • 19h00‑21h30</p>
+          <p>Avec Anaïs Verspan, Marie‑José Nagapin, Fione Roche</p>
         </article>
       </div>
     </section>
@@ -117,15 +124,23 @@
     <section data-day-section="12" class="mb-12">
       <h2 class="text-2xl font-bold text-green-700 mb-6">Samedi 12 juillet</h2>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <article class="event-card bg-white rounded-xl shadow-md border-l-4 border-moule p-6" data-place="moule">
+        <!-- Lamentin – Terre de Femmes -->
+        <article class="event-card bg-white rounded-xl shadow-md border-l-4 border-lamentin p-6" data-place="lamentin">
           <h3 class="text-xl font-bold">Terre de Femmes</h3>
-          <p class="text-gray-500 text-sm mb-1">Le Moule • 19h00‑21h30</p>
-          <p>Avec Anaïs Verspan, Marie‑José Nagapin</p>
+          <p class="text-gray-500 text-sm mb-1">Lamentin • 14h00‑16h30</p>
+          <p>Avec Eléonor Dalmat</p>
         </article>
+        <!-- Lamentin – And Still It Remains + Décolonisons l’écologie -->
         <article class="event-card bg-white rounded-xl shadow-md border-l-4 border-lamentin p-6" data-place="lamentin">
           <h3 class="text-xl font-bold">And Still It Remains + Décolonisons l’écologie</h3>
           <p class="text-gray-500 text-sm mb-1">Lamentin • 17h00‑20h30</p>
-          <p>Bokantaj avec Damien Nicolas</p>
+          <p>Bokantaj avec Damien Nicolas, Yvelle Athalys Neel</p>
+        </article>
+        <!-- Saint‑Claude -->
+        <article class="event-card bg-white rounded-xl shadow-md border-l-4 border-saintclaude p-6" data-place="saintclaude">
+          <h3 class="text-xl font-bold">Vivant &amp; Gorongosa, le Parc de la Réconciliation</h3>
+          <p class="text-gray-500 text-sm mb-1">Saint‑Claude • 14h00‑18h00</p>
+          <p><a href="https://framaforms.org/inscription-png-1750251825" target="_blank" class="text-saintclaude underline">Inscription obligatoire</a></p>
         </article>
       </div>
     </section>
@@ -134,15 +149,29 @@
     <section data-day-section="13" class="mb-12">
       <h2 class="text-2xl font-bold text-green-700 mb-6">Dimanche 13 juillet</h2>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Baie‑Mahault -->
         <article class="event-card bg-white rounded-xl shadow-md border-l-4 border-baiemahault p-6" data-place="baiemahault">
-          <h3 class="text-xl font-bold">Didiko &amp; courts‑métrages</h3>
+          <h3 class="text-xl font-bold">Petit‑déjeuner &amp; courts‑métrages</h3>
           <p class="text-gray-500 text-sm mb-1">Baie‑Mahault • 9h00‑12h00</p>
-          <p><a href="#" class="text-baiemahault underline">Inscription obligatoire</a></p>
+          <p><a href="https://framaforms.org/inscription-les-bonnifieurs-1750101309" target="_blank" class="text-baiemahault underline">Inscription obligatoire</a></p>
         </article>
-        <article class="event-card bg-white rounded-xl shadow-md border-l-4 border-saintclaude p-6" data-place="saintclaude">
-          <h3 class="text-xl font-bold">Vivant &amp; Gorongosa</h3>
-          <p class="text-gray-500 text-sm mb-1">Saint‑Claude • 14h00‑18h00</p>
-          <p><a href="#" class="text-saintclaude underline">Inscription obligatoire</a></p>
+        <!-- Vieux‑Habitants -->
+        <article class="event-card bg-white rounded-xl shadow-md border-l-4 border-vieux p-6" data-place="vieux">
+          <h3 class="text-xl font-bold">Ma Maison Brûle &amp; Sœurs de la Terre</h3>
+          <p class="text-gray-500 text-sm mb-1">Vieux‑Habitants • 19h00‑22h00</p>
+          <p>Avec Anaïs Verspan, Thérèse Bandou, Stéphanie Melyon‑Reinette</p>
+        </article>
+        <!-- Sainte‑Rose -->
+        <article class="event-card bg-white rounded-xl shadow-md border-l-4 border-sainterose p-6" data-place="sainterose">
+          <h3 class="text-xl font-bold">Gorongosa, le Parc de la Réconciliation</h3>
+          <p class="text-gray-500 text-sm mb-1">Sainte‑Rose • 18h00‑20h00</p>
+          <p>Avec Association Titè – dîner sur réservation</p>
+        </article>
+        <!-- Goyave -->
+        <article class="event-card bg-white rounded-xl shadow-md border-l-4 border-goyave p-6" data-place="goyave">
+          <h3 class="text-xl font-bold">Décolonisons l’écologie &amp; soirée BWÈ, MANJÉ, DANSÉ</h3>
+          <p class="text-gray-500 text-sm mb-1">Goyave • 19h00‑23h00</p>
+          <p><a href="https://framaforms.org/inscription-goyave-1750100927" target="_blank" class="text-goyave underline">Inscription obligatoire</a></p>
         </article>
       </div>
     </section>
@@ -152,9 +181,9 @@
   <footer class="bg-green-100 text-green-800 text-center py-6 mt-10">
     <p class="mb-2 font-semibold">Suivez-nous</p>
     <div class="flex justify-center gap-4 text-lg">
-      <a href="https://www.instagram.com/terrafestival" target="_blank" class="hover:underline">Instagram</a>
+      <a href="https://www.instagram.com/terrafestival.guadeloupe" target="_blank" class="hover:underline">Instagram</a>
       <a href="https://www.facebook.com/terrafestival" target="_blank" class="hover:underline">Facebook</a>
-      <a href="mailto:contact@terrafestival.org" class="hover:underline">contact@terrafestival.org</a>
+      <a href="mailto:terrafestival971@protonmail.com" class="hover:underline">terrafestival971@protonmail.com</a>
     </div>
   </footer>
 
@@ -211,6 +240,6 @@
       });
     });
   });
-</script>
+  </script>
 </body>
 </html>
