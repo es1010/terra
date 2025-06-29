@@ -64,11 +64,19 @@
 
     <!-- Carte rétractable -->
     <section class="mb-8">
-      <button id="toggle-map" class="mb-4 px-4 py-2 bg-green-100 text-green-800 rounded hover:bg-green-200">Afficher la carte des lieux</button>
-      <div id="map-container" class="hidden transition-all duration-300 ease-in-out">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Guadeloupe_departments_blank_map.svg/800px-Guadeloupe_departments_blank_map.svg.png" alt="Carte simple de la Guadeloupe" class="rounded shadow-md max-w-full mx-auto">
-      </div>
-    </section>
+  <div class="flex gap-4 mb-4">
+    <button id="toggle-map" class="px-6 py-3 bg-green-100 text-green-800 rounded hover:bg-green-200 text-lg font-semibold">
+      Afficher la carte des lieux
+    </button>
+    <a href="https://fr.calameo.com/read/000000000000000000000" target="_blank" rel="noopener noreferrer"
+      class="px-6 py-3 bg-blue-100 text-blue-800 rounded hover:bg-blue-200 text-lg font-semibold inline-flex items-center justify-center">
+      Lire la brochure
+    </a>
+  </div>
+  <div id="map-container" class="hidden transition-all duration-300 ease-in-out">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Guadeloupe_departments_blank_map.svg/800px-Guadeloupe_departments_blank_map.svg.png" alt="Carte simple de la Guadeloupe" class="rounded shadow-md max-w-full mx-auto">
+  </div>
+</section>
 
     <!-- PROGRAMMATION -->
     <!-- 11 juillet -->
