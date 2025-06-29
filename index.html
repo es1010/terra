@@ -295,14 +295,14 @@ let leafletMap;
   });
   </script>
 <script>
-  document.addEventListener('DOMContentLoaded',()=>{
-      window.leafletMap=L.map('leaflet-map',{scrollWheelZoom:false})
-        .setView([16.25,-61.55],10);
+   document.addEventListener("DOMContentLoaded", function () {
+    const map = L.map("leaflet-map").setView([16.25, -61.55], 9); // Coordonnées centrées sur la Guadeloupe
 
-      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
-        attribution:'&copy; OpenStreetMap contributors',
-        maxZoom:19
-      }).addTo(leafletMap);
+    // 👉 Fond de carte OpenStreetMap
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution:
+        '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(leafletmap);
 
       /* ---- données lieux ---- */
       const spots=[
