@@ -91,7 +91,8 @@
     <img src="carte_TERRA.png" alt="Carte Terra Festival" class="rounded shadow-md max-w-full lg:w-1/2 mx-auto" />
     
     <!-- Carte interactive -->
-    <div id="map" class="w-full h-[400px] lg:w-1/2 rounded shadow-md"></div>
+    <div id="leaflet-map"          <!-- ← nouveau nom -->
+     class="w-full h-[400px] lg:w-1/2 rounded shadow-md"></div>
   </div>
 </div>
     </section>
@@ -225,6 +226,7 @@
 
   <!-- JS Filtres + Carte -->
   <script>
+let leafletMap;
   // Programme complet : show/hide
   document.getElementById('toggle-programme').addEventListener('click', () => {
     const box = document.getElementById('programme-container');
@@ -237,18 +239,19 @@
 
   // Carte des lieux : show/hide
   document.getElementById('toggle-map').addEventListener('click', () => {
-  const box = document.getElementById('map-container');
-  const btn = document.getElementById('toggle-map');
-  box.classList.toggle('hidden');
-  btn.textContent = box.classList.contains('hidden')
-    ? 'Afficher la carte des lieux'
-    : 'Masquer la carte des lieux';
+    const box = document.getElementById('map-container');
+    const btn = document.getElementById('toggle-map');
 
-  if (!box.classList.contains('hidden')) {
-    // « réveille » Leaflet
-    setTimeout(() => map.invalidateSize(), 100);
-  }
-});
+    box.classList.toggle('hidden');
+    btn.textContent = box.classList.contains('hidden')
+      ? 'Afficher la carte des lieux'
+      : 'Masquer la carte des lieux';
+
+    // ↳ Ré‑ajuste la taille de Leaflet quand on rend la carte visible
+    if (!box.classList.contains('hidden') && leafletMap) {
+      setTimeout(() => leafletMap.invalidateSize(), 100);
+    }
+  });
 
   // Utilitaire : gérer les boutons actifs
   function toggleActive(activeBtn, selector, activeClass) {
@@ -285,13 +288,13 @@
 <script>
 document.addEventListener("DOMContentLoaded", () => {
   /* --- 1. Carte de base ------------------------------ */
-  const map = L.map("leaflet-map", { scrollWheelZoom: false })
-              .setView([16.25, -61.55], 10);
+  leafletMap = L.map("leaflet-map", { scrollWheelZoom: false })  /* ← utilise la globale */
+                .setView([16.25, -61.55], 10);
 
   L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
     attribution: "© OpenStreetMap contrib.",
     maxZoom: 19
-  }).addTo(map);
+  }).addTo(leafletMap);
 
   /* --- 2. Lieux -------------------------------------- */
   const spots = [
@@ -322,7 +325,7 @@ document.addEventListener("DOMContentLoaded", () => {
       color: tailwindColors[s.color],
       fillColor: tailwindColors[s.color],
       fillOpacity: 0.8
-    }).addTo(map);
+    }).addTo(leafletMap);
 
     marker.bindPopup(`<strong>${s.name}</strong>`);
   });
@@ -331,7 +334,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const group = L.featureGroup(
     spots.map(s => L.circleMarker([s.lat, s.lon]))
   );
-  map.fitBounds(group.getBounds().pad(0.25));
+  leafletMap.fitBounds(group.getBounds().pad(0.25));
 });
 </script>
 </body>
