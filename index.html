@@ -159,48 +159,58 @@
   </footer>
 
   <!-- JS Filtres + Carte -->
-  <script>
-   // Programme complet : show/hide
-document.getElementById('toggle-programme').addEventListener('click', () => {
-  const box = document.getElementById('programme-container');
-  const btn = document.getElementById('toggle-programme');
-  box.classList.toggle('hidden');
-  btn.textContent = box.classList.contains('hidden')
-    ? 'Afficher le programme complet'
-    : 'Masquer le programme complet';
-});
+  <<script>
+  // Programme complet : show/hide
+  document.getElementById('toggle-programme').addEventListener('click', () => {
+    const box = document.getElementById('programme-container');
+    const btn = document.getElementById('toggle-programme');
+    box.classList.toggle('hidden');
+    btn.textContent = box.classList.contains('hidden')
+      ? 'Afficher le programme complet'
+      : 'Masquer le programme complet';
+  });
 
-// Carte des lieux : show/hide
-document.getElementById('toggle-map').addEventListener('click', () => {
-  const box = document.getElementById('map-container');
-  const btn = document.getElementById('toggle-map');
-  box.classList.toggle('hidden');
-  btn.textContent = box.classList.contains('hidden')
-    ? 'Afficher la carte des lieux'
-    : 'Masquer la carte des lieux';
-});
+  // Carte des lieux : show/hide
+  document.getElementById('toggle-map').addEventListener('click', () => {
+    const box = document.getElementById('map-container');
+    const btn = document.getElementById('toggle-map');
+    box.classList.toggle('hidden');
+    btn.textContent = box.classList.contains('hidden')
+      ? 'Afficher la carte des lieux'
+      : 'Masquer la carte des lieux';
+  });
 
-    // Jour
-    document.querySelectorAll('.btn-day').forEach(b=>{
-      b.addEventListener('click',()=>{
-        const day=b.dataset.day;
-        toggleActive(b,'.btn-day','bg-green-600');
-        document.querySelectorAll('[data-day-section]').forEach(sec=>{
-          sec.hidden = day!=='all' && sec.dataset.daySection!==day;
-        });
+  // Utilitaire : gérer les boutons actifs
+  function toggleActive(activeBtn, selector, activeClass) {
+    document.querySelectorAll(selector).forEach(btn => {
+      btn.classList.remove(activeClass, 'text-white');
+      btn.classList.add('bg-green-100', 'text-green-800');
+    });
+    activeBtn.classList.add(activeClass, 'text-white');
+    activeBtn.classList.remove('bg-green-100', 'text-green-800');
+  }
+
+  // Filtres par jour
+  document.querySelectorAll('.btn-day').forEach(b => {
+    b.addEventListener('click', () => {
+      const day = b.dataset.day;
+      toggleActive(b, '.btn-day', 'bg-green-600');
+      document.querySelectorAll('[data-day-section]').forEach(sec => {
+        sec.hidden = day !== 'all' && sec.dataset.daySection !== day;
       });
     });
+  });
 
-    // Lieu
-    document.querySelectorAll('.btn-place').forEach(b=>{
-      b.addEventListener('click',()=>{
-        const place=b.dataset.place;
-        toggleActive(b,'.btn-place','bg-green-600');
-        document.querySelectorAll('.event-card').forEach(card=>{
-          card.hidden = place!=='all' && card.dataset.place!==place;
-        });
+  // Filtres par lieu
+  document.querySelectorAll('.btn-place').forEach(b => {
+    b.addEventListener('click', () => {
+      const place = b.dataset.place;
+      toggleActive(b, '.btn-place', 'bg-green-600');
+      document.querySelectorAll('.event-card').forEach(card => {
+        card.hidden = place !== 'all' && card.dataset.place !== place;
       });
     });
-  </script>
+  });
+</script>
 </body>
 </html>
