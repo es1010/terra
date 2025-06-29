@@ -50,53 +50,31 @@
         <button data-day="12" class="btn-day px-4 py-2 rounded-lg font-medium min-w-max bg-green-100 text-green-800">12 juillet</button>
         <button data-day="13" class="btn-day px-4 py-2 rounded-lg font-medium min-w-max bg-green-100 text-green-800">13 juillet</button>
       </div>
-      <div class="flex overflow-x-auto gap-2 no-scrollbar">
-        <button data-place="all" class="btn-place px-4 py-2 rounded-lg font-medium min-w-max bg-green-600 text-white">Tous les lieux</button>
-        <button data-place="lamentin" class="btn-place px-4 py-2 rounded-lg font-medium min-w-max bg-lamentin/20 text-lamentin hover:bg-lamentin/30">Le Lamentin – Médiathèque du Lamentin</button>
-        <button data-place="moule" class="btn-place px-4 py-2 rounded-lg font-medium min-w-max bg-moule/20 text-moule hover:bg-moule/30">Le Moule – Salle Robert Loyson</button>
-        <button data-place="saintclaude" class="btn-place px-4 py-2 rounded-lg font-medium min-w-max bg-saintclaude/20 text-saintclaude hover:bg-saintclaude/30">Saint‑Claude – Maison du Parc National</button>
-        <button data-place="vieux" class="btn-place px-4 py-2 rounded-lg font-medium min-w-max bg-vieux/20 text-vieux hover:bg-vieux/30">Vieux‑Habitants – Chapiteau GwadaCircus</button>
-        <button data-place="baiemahault" class="btn-place px-4 py-2 rounded-lg font-medium min-w-max bg-baiemahault/20 text-baiemahault hover:bg-baiemahault/30">Baie‑Mahault – Les Bonnifieurs (Jarry)</button>
-        <button data-place="goyave" class="btn-place px-4 py-2 rounded-lg font-medium min-w-max bg-goyave/20 text-goyave hover:bg-goyave/30">Goyave – Chez Nel</button>
-        <button data-place="sainterose" class="btn-place px-4 py-2 rounded-lg font-medium min-w-max bg-sainterose/20 text-sainterose hover:bg-sainterose/30">Sainte‑Rose – Sucrerie de Nogent</button>
+      <!-- Place filters wrap on multiple lines now -->
+      <div class="flex flex-wrap gap-2">
+        <button data-place="all" class="btn-place px-4 py-2 rounded-lg font-medium bg-green-600 text-white">Tous les lieux</button>
+        <button data-place="lamentin" class="btn-place px-4 py-2 rounded-lg font-medium bg-lamentin/20 text-lamentin hover:bg-lamentin/30">Le Lamentin – Médiathèque du Lamentin</button>
+        <button data-place="moule" class="btn-place px-4 py-2 rounded-lg font-medium bg-moule/20 text-moule hover:bg-moule/30">Le Moule – Salle Robert Loyson</button>
+        <button data-place="saintclaude" class="btn-place px-4 py-2 rounded-lg font-medium bg-saintclaude/20 text-saintclaude hover:bg-saintclaude/30">Saint‑Claude – Maison du Parc National</button>
+        <button data-place="vieux" class="btn-place px-4 py-2 rounded-lg font-medium bg-vieux/20 text-vieux hover:bg-vieux/30">Vieux‑Habitants – Chapiteau GwadaCircus</button>
+        <button data-place="baiemahault" class="btn-place px-4 py-2 rounded-lg font-medium bg-baiemahault/20 text-baiemahault hover:bg-baiemahault/30">Baie‑Mahault – Les Bonnifieurs (Jarry)</button>
+        <button data-place="goyave" class="btn-place px-4 py-2 rounded-lg font-medium bg-goyave/20 text-goyave hover:bg-goyave/30">Goyave – Chez Nel</button>
+        <button data-place="sainterose" class="btn-place px-4 py-2 rounded-lg font-medium bg-sainterose/20 text-sainterose hover:bg-sainterose/30">Sainte‑Rose – Sucrerie de Nogent</button>
       </div>
     </section>
 
-    <!-- SECTION  Programme + Carte + Brochure ------------------------------------>
+    <!-- SECTION  Programme + Carte + Brochure -->
     <section class="mb-8">
-      <!-- Boutons -->
       <div class="flex flex-wrap gap-4 mb-4">
-        <!-- Programme complet -->
-        <button id="toggle-programme"
-                class="px-6 py-3 bg-yellow-100 text-yellow-800 rounded hover:bg-yellow-200 text-lg font-semibold">
-          Afficher le programme complet
-        </button>
-
-        <!-- Carte des lieux -->
-        <button id="toggle-map"
-                class="px-6 py-3 bg-green-100 text-green-800 rounded hover:bg-green-200 text-lg font-semibold">
-          Afficher la carte des lieux
-        </button>
-
-        <!-- Brochure -->
-        <a href="https://www.calameo.com/read/XXXXXXXX" target="_blank"
-           class="px-6 py-3 bg-purple-100 text-purple-800 rounded hover:bg-purple-200 text-lg font-semibold">
-          Lire la brochure
-        </a>
+        <button id="toggle-programme" class="px-6 py-3 bg-yellow-100 text-yellow-800 rounded hover:bg-yellow-200 text-lg font-semibold">Afficher le programme complet</button>
+        <button id="toggle-map" class="px-6 py-3 bg-green-100 text-green-800 rounded hover:bg-green-200 text-lg font-semibold">Afficher la carte des lieux</button>
+        <a href="https://www.calameo.com/read/XXXXXXXX" target="_blank" class="px-6 py-3 bg-purple-100 text-purple-800 rounded hover:bg-purple-200 text-lg font-semibold">Lire la brochure</a>
       </div>
-
-      <!-- Image : Programme complet -->
       <div id="programme-container" class="hidden transition-all duration-300 ease-in-out mb-4">
-        <img src="Programme_complet_TERRA.png"
-             alt="Programme complet Terra Festival"
-             class="rounded shadow-md max-w-full mx-auto">
+        <img src="Programme_complet_TERRA.png" alt="Programme complet Terra Festival" class="rounded shadow-md max-w-full mx-auto">
       </div>
-
-      <!-- Image : Carte -->
       <div id="map-container" class="hidden transition-all duration-300 ease-in-out">
-        <img src="carte_TERRA.png"
-             alt="Carte Terra Festival"
-             class="rounded shadow-md max-w-full mx-auto">
+        <img src="carte_TERRA.png" alt="Carte Terra Festival" class="rounded shadow-md max-w-full mx-auto">
       </div>
     </section>
 
@@ -161,6 +139,18 @@
           <p class="text-sm"><strong>Intervenant :</strong> Parc national de Guadeloupe</p>
           <p class="text-sm"><a href="https://framaforms.org/inscription-png-1750251825" target="_blank" class="text-saintclaude underline">Inscription obligatoire – places limitées</a></p>
         </article>
+
+        <!-- Vieux‑Habitants (déplacé au 12 juillet) -->
+        <article class="event-card bg-white rounded-xl shadow-md border-l-4 border-vieux p-6 space-y-2" data-place="vieux">
+          <h3 class="text-xl font-bold">Ma Maison Brûle, Compagnie Deoedeba &amp; Sœurs de la Terre</h3>
+          <p class="text-gray-500 text-sm">Vieux‑Habitants – Chapiteau GwadaCircus • 19h00‑22h00</p>
+          <ul class="list-disc pl-5 text-sm space-y-1">
+            <li><strong>Performance artistique :</strong> <em>Ma Maison Brûle et le Monde Chante</em> (Métis’Gwa, 15 min) — Réflexion sur la transformation du monde et la résilience.</li>
+            <li><strong>Performance aérienne :</strong> Compagnie Deoedeba (Ségolène Marchand, 15 min)</li>
+            <li><strong>Film :</strong> <em>Sœurs de la Terre</em> (Pascale d’Erm, Guadeloupe, 2024, 53 min, FR &amp; CR, VOSTFR) — Lutte des femmes guadeloupéennes contre l’empoisonnement au chlordécone.</li>
+          </ul>
+          <p class="text-sm"><strong>Intervenantes :</strong> Anaïs Verspan, Thérèse Bandou, Stéphanie Melyon‑Reinette</p>
+        </article>
       </div>
     </section>
 
@@ -178,18 +168,6 @@
             <li>Vente de livres sur place</li>
           </ul>
           <p class="text-sm"><a href="https://framaforms.org/inscription-les-bonnifieurs-1750101309" target="_blank" class="text-baiemahault underline">Inscription obligatoire – places limitées</a></p>
-        </article>
-
-        <!-- Vieux‑Habitants -->
-        <article class="event-card bg-white rounded-xl shadow-md border-l-4 border-vieux p-6 space-y-2" data-place="vieux">
-          <h3 class="text-xl font-bold">Ma Maison Brûle, Compagnie Deoedeba &amp; Sœurs de la Terre</h3>
-          <p class="text-gray-500 text-sm">Vieux‑Habitants – Chapiteau GwadaCircus • 19h00‑22h00</p>
-          <ul class="list-disc pl-5 text-sm space-y-1">
-            <li><strong>Performance artistique :</strong> <em>Ma Maison Brûle et le Monde Chante</em> (Métis’Gwa, 15 min) — Réflexion sur la transformation du monde et la résilience.</li>
-            <li><strong>Performance aérienne :</strong> Compagnie Deoedeba (Ségolène Marchand, 15 min)</li>
-            <li><strong>Film :</strong> <em>Sœurs de la Terre</em> (Pascale d’Erm, Guadeloupe, 2024, 53 min, FR &amp; CR, VOSTFR) — Lutte des femmes guadeloupéennes contre l’empoisonnement au chlordécone.</li>
-          </ul>
-          <p class="text-sm"><strong>Intervenantes :</strong> Anaïs Verspan, Thérèse Bandou, Stéphanie Melyon‑Reinette</p>
         </article>
 
         <!-- Goyave -->
@@ -228,7 +206,7 @@
   </footer>
 
   <!-- JS Filtres + Carte -->
-  <<script>
+  <script>
   // Programme complet : show/hide
   document.getElementById('toggle-programme').addEventListener('click', () => {
     const box = document.getElementById('programme-container');
