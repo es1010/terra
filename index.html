@@ -91,8 +91,7 @@
     <img src="carte_TERRA.png" alt="Carte Terra Festival" class="rounded shadow-md max-w-full lg:w-1/2 mx-auto" />
     
     <!-- Carte interactive (leaflet) -->
-<div id="leaflet-map"
-     class="w-full h-[400px] lg:w-1/2 rounded shadow-md"></div>
+<div id="leaflet-map" class="w-full h-[400px] lg:w-1/2 rounded shadow-md"></div>
   </div>
 </div>
     </section>
@@ -336,6 +335,21 @@ document.addEventListener("DOMContentLoaded", () => {
   );
   leafletMap.fitBounds(group.getBounds().pad(0.25));
 });
+</script>
+<script>
+  document.getElementById('toggle-map').addEventListener('click', function () {
+    const mapContainer = document.getElementById('map-container');
+    mapContainer.classList.toggle('hidden');
+
+    // Initialiser la carte uniquement si elle n'existe pas déjà
+    if (!window._leafletMap) {
+      const map = L.map('leaflet-map').setView([16.25, -61.55], 9); // Guadeloupe approx
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; OpenStreetMap contributors'
+      }).addTo(map);
+      window._leafletMap = map;
+    }
+  });
 </script>
 </body>
 </html>
