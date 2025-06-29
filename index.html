@@ -8,12 +8,12 @@
 <link
   rel="stylesheet"
   href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-  integrity="sha256-sA+qwYqkD3D5dlpVDXlZoGgvYBvCkV5z2tm7YV2bQpA="
+  integrity="sha256-IhS0b+pVN4Drum1d2zvTCLyo1icS1VHxS4QEC2uvCHU="
   crossorigin=""
 />
 <script
   src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-  integrity="sha256-oH+m3T2XAb+EboiWydJfXfS7iBbS0ObJjHZn3X1sjtk="
+  integrity="sha256-o9N1jRVze3rPXgKOl7Ll8c5wNkG9e7Fv1GXV+yXkzPo="
   crossorigin=""
 ></script>
 
@@ -237,8 +237,7 @@ let leafletMap;
   });
 
   // Carte des lieux : show/hide
-  document.getElementById('toggle-map').addEventListener('click', () => {
-    const box = document.getElementById('map-container');
+      const box = document.getElementById('map-container');
     const btn = document.getElementById('toggle-map');
 
     const isHidden = box.classList.toggle('hidden');
@@ -291,7 +290,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 .setView([16.25, -61.55], 10);
 
   L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-    attribution: "© OpenStreetMap contrib.",
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     maxZoom: 19
   }).addTo(leafletMap);
 
