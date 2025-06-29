@@ -241,14 +241,14 @@ let leafletMap;
     const box = document.getElementById('map-container');
     const btn = document.getElementById('toggle-map');
 
-    box.classList.toggle('hidden');
-    btn.textContent = box.classList.contains('hidden')
-      ? 'Afficher la carte des lieux'
-      : 'Masquer la carte des lieux';
+    const isHidden = box.classList.toggle('hidden');
+  btn.textContent = isHidden
+    ? 'Afficher la carte des lieux'
+    : 'Masquer la carte des lieux';
 
-    // ↳ Ré‑ajuste la taille de Leaflet quand on rend la carte visible
-    if (!box.classList.contains('hidden') && leafletMap) {
-      setTimeout(() => leafletMap.invalidateSize(), 100);
+  // si on vient d’afficher la carte, on réajuste Leaflet
+  if (!isHidden && leafletMap) {
+    setTimeout(() => leafletMap.invalidateSize(), 50);
     }
   });
 
@@ -335,21 +335,6 @@ document.addEventListener("DOMContentLoaded", () => {
   );
   leafletMap.fitBounds(group.getBounds().pad(0.25));
 });
-</script>
-<script>
-  document.getElementById('toggle-map').addEventListener('click', function () {
-    const mapContainer = document.getElementById('map-container');
-    mapContainer.classList.toggle('hidden');
-
-    // Initialiser la carte uniquement si elle n'existe pas déjà
-    if (!window._leafletMap) {
-      const map = L.map('leaflet-map').setView([16.25, -61.55], 9); // Guadeloupe approx
-      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; OpenStreetMap contributors'
-      }).addTo(map);
-      window._leafletMap = map;
-    }
-  });
 </script>
 </body>
 </html>
