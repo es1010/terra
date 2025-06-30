@@ -326,16 +326,17 @@ document.addEventListener('DOMContentLoaded', () => {
         .addTo(map)
         .bindPopup(`<strong>${s.name}</strong>`);
     });
-  });
-  const mapButton   = document.getElementById('toggle-map');
-  const mapWrapper  = document.getElementById('map-container');
+  // 6. Gérer redimensionnement si affichage conditionnel
+  const mapButton  = document.getElementById('toggle-map');
+  const mapWrapper = document.getElementById('map-container');
 
   if (mapButton && mapWrapper) {
     mapButton.addEventListener('click', () => {
-      // 50 ms après que le div est devenu visible :
-      if (!mapWrapper.classList.contains('hidden')) {
-        setTimeout(() => map.invalidateSize(), 50);
-      }
+      setTimeout(() => {
+        if (!mapWrapper.classList.contains('hidden')) {
+          map.invalidateSize();
+        }
+      }, 50);
     });
   }
 });
