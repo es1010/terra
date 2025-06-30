@@ -284,7 +284,7 @@ let leafletMap;
 document.addEventListener('DOMContentLoaded', () => {
 
     /* 1. Carte centrée directement sur la Guadeloupe */
-    const map = L.map('map', { scrollWheelZoom: false })
+    const leafletMap = L.map("leaflet-map", { scrollWheelZoom: false })
                 .setView([16.25, -61.55], 10);
 
     /* Tuiles OSM France (plus stables en CDN GitHub Pages) */
