@@ -41,6 +41,7 @@
   <style>
     .no-scrollbar::-webkit-scrollbar { display: none; }
     .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    #leaflet-map { height: 600px; width: 100%; }
   </style>
 </head>
 <body class="bg-gray-50 font-sans antialiased text-gray-800">
@@ -287,11 +288,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const map = L.map("leaflet-map", { scrollWheelZoom: false })
                 .setView([16.25, -61.55], 10);
 
-    /* Tuiles OSM France (plus stables en CDN GitHub Pages) */
-    L.tileLayer('https://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png', {
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       maxZoom: 19,
-      subdomains: 'abc',
-      attribution: '&copy; OpenStreetMap contributors — Tiles courtesy of OSM France'
+      attribution: '&copy; OpenStreetMap contributors'
     }).addTo(map);
 
     /* 2. Points du festival avec leur couleur */
@@ -305,15 +304,23 @@ document.addEventListener('DOMContentLoaded', () => {
       { lat: 16.123093, lon: -61.593207, color: '#2563eb', name: 'Goyave – Chez Nel' }
     ];
 
-    /* 3. Création des marqueurs “goutte inversée” colorés */
+   /* 4. Fabrique une icône SVG "goutte" pointant vers le bas */
+    function svgPin(color) {
+      const svg = `<?xml version="1.0" encoding="UTF-8"?>\
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 34'>\
+  <path d='M12 0C7.03 0 3 4.03 3 9c0 7.5 9 25 9 25s9-17.5 9-25C21 4.03 16.97 0 12 0z' fill='${color}'/>\
+  <circle cx='12' cy='9' r='3' fill='#ffffff'/>\
+</svg>`;
+      return 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(svg);
+    }
+
+    /* 5. Ajout des marqueurs */
     spots.forEach(s => {
-      const hex = s.color.replace('#', '');
       const icon = L.icon({
-        iconUrl: `https://chart.googleapis.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|${hex}`,
-        iconSize:    [21, 34],   // taille pin standard
-        iconAnchor:  [10, 0],    // pointe après rotation
-        popupAnchor: [0, -10],
-        className:   'marker-upside-down'
+        iconUrl: svgPin(s.color),
+        iconSize:    [24, 34],  // correspond au viewBox
+        iconAnchor:  [12, 34],  // pointe en bas
+        popupAnchor: [0, -36]
       });
 
       L.marker([s.lat, s.lon], { icon })
