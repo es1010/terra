@@ -289,7 +289,7 @@ document.addEventListener('DOMContentLoaded', () => {
             .setView([16.242, -61.541], 10);
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      maxZoom: 19,
+      maxZoom: 18,
       attribution: '&copy; OpenStreetMap contributors'
     }).addTo(map);
 
@@ -327,6 +327,18 @@ document.addEventListener('DOMContentLoaded', () => {
         .bindPopup(`<strong>${s.name}</strong>`);
     });
   });
+  const mapButton   = document.getElementById('toggle-map');
+  const mapWrapper  = document.getElementById('map-container');
+
+  if (mapButton && mapWrapper) {
+    mapButton.addEventListener('click', () => {
+      // 50 ms après que le div est devenu visible :
+      if (!mapWrapper.classList.contains('hidden')) {
+        setTimeout(() => map.invalidateSize(), 50);
+      }
+    });
+  }
+});
 </script>
 </body>
 </html>
