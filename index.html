@@ -282,57 +282,52 @@ let leafletMap;
   </script>
 <script>
 document.addEventListener('DOMContentLoaded', () => {
-      /* --- 1. Carte de base ------------------------------ */
-      // centrage initial Guadeloupe (Basse‑Terre + Grande‑Terre)
-      leafletMap = L.map('leaflet-map', { scrollWheelZoom: false }).setView([16.25, -61.55], 10);
 
-      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-        maxZoom: 19
-      }).addTo(leafletMap);
+  /* --- petit style pour retourner l’icône ------------------------ */
+  const css = '.marker-upside-down { transform: rotate(180deg); }';
+  const style = document.createElement('style');
+  style.appendChild(document.createTextNode(css));
+  document.head.appendChild(style);
 
-      /* --- 2. Lieux -------------------------------------- */
-      const spots = [
-        { name: 'Le Lamentin – Médiathèque', lat: 16.273495, lon: -61.634856, color: 'lamentin' },
-        { name: 'Le Moule – Salle Robert Loyson', lat: 16.332073, lon: -61.346476, color: 'moule' },
-        { name: 'Baie‑Mahault – Les Bonnifieurs', lat: 16.245125, lon: -61.554648, color: 'baiemahault' },
-        { name: 'Saint‑Claude – Maison du Parc', lat: 16.016245, lon: -61.707115, color: 'saintclaude' },
-        { name: 'Vieux‑Habitants – GwadaCircus', lat: 16.079538, lon: -61.766349, color: 'vieux' },
-        { name: 'Sainte‑Rose – Sucrerie de Nogent', lat: 16.354517, lon: -61.735525, color: 'sainterose' },
-        { name: 'Goyave – Chez Nel', lat: 16.123093, lon: -61.593207, color: 'goyave' }
-      ];
+  /* --- 1. Carte centrée directement sur la Guadeloupe ------------ */
+  const leafletMap = L.map('leaflet-map', { scrollWheelZoom: false })
+        .setView([16.25, -61.55], 10);
 
-      /* --- 3. Palette ------------------------------------ */
-      const tailwindColors = {
-        lamentin: '#f97316',
-        moule: '#f9a8d4',
-        baiemahault: '#db2777',
-        saintclaude: '#16a34a',
-        vieux: '#9333ea',
-        sainterose: '#c084fc',
-        goyave: '#2563eb'
-      };
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+  }).addTo(leafletMap);
 
-      /* --- 4. Générateur d'icônes goutte inversée -------- */
-      const createDropIcon = (hex) => L.divIcon({
-        html: `<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='${hex}'><path d='M12 0s8 8.14 8 13a8 8 0 1 1-16 0C4 8.14 12 0 12 0z'/></svg>`,
-        className: '', // pas de classe par défaut
-        iconSize: [24, 24],
-        iconAnchor: [12, 0],      // pointe en haut (goutte inversée)
-        popupAnchor: [0, -8]
-      });
+  /* --- 2. Données des lieux ------------------------------------- */
+  const spots = [
+    { name: 'Le Lamentin – Médiathèque',        lat: 16.273495, lon: -61.634856 },
+    { name: 'Le Moule – Salle Robert Loyson',   lat: 16.332073, lon: -61.346476 },
+    { name: 'Baie‑Mahault – Les Bonnifieurs',   lat: 16.245125, lon: -61.554648 },
+    { name: 'Saint‑Claude – Maison du Parc',    lat: 16.016245, lon: -61.707115 },
+    { name: 'Vieux‑Habitants – GwadaCircus',    lat: 16.079538, lon: -61.766349 },
+    { name: 'Sainte‑Rose – Sucrerie de Nogent', lat: 16.354517, lon: -61.735525 },
+    { name: 'Goyave – Chez Nel',               lat: 16.123093, lon: -61.593207 }
+  ];
 
-      /* --- 5. Marqueurs ---------------------------------- */
-      spots.forEach((s) => {
-        L.marker([s.lat, s.lon], { icon: createDropIcon(tailwindColors[s.color]) })
-          .addTo(leafletMap)
-          .bindPopup(`<strong>${s.name}</strong>`);
-      });
+  /* --- 3. Icône “goutte” inversée -------------------------------- */
+  const invertedIcon = L.icon({
+    iconUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png',
+    iconRetinaUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png',
+    shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
+    iconSize:    [25, 41],
+    iconAnchor:  [12,  0],   // pointe désormais en haut après rotation
+    popupAnchor: [ 0, -10],
+    className:   'marker-upside-down'
+  });
 
-      /* --- 6. Ajustement automatique --------------------- */
-      const group = L.featureGroup(spots.map((s) => L.marker([s.lat, s.lon])));
-      leafletMap.fitBounds(group.getBounds().pad(0.25));
-    });
+  /* --- 4. Marqueurs + popups ------------------------------------ */
+  spots.forEach(s => {
+    L.marker([s.lat, s.lon], { icon: invertedIcon })
+      .addTo(leafletMap)
+      .bindPopup(`<strong>${s.name}</strong>`);
+  });
+
+});
 </script>
 </body>
 </html>
