@@ -286,10 +286,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     /* 1. Carte centrée directement sur la Guadeloupe */
     const map = L.map("leaflet-map", { scrollWheelZoom: false })
-                .setView([16.237, -61.530], 11);
+    /* Définition des limites approximatives de la Guadeloupe */
+    const bounds = [
+      [15.80, -61.90],  // sud-ouest
+      [16.55, -61.00]   // nord-est
+    ];
+    map.fitBounds(bounds);
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      maxZoom: 17,
       attribution: '&copy; OpenStreetMap contributors'
     }).addTo(map);
 
