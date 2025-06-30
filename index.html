@@ -286,10 +286,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     /* 1. Carte centrée directement sur la Guadeloupe */
     const map = L.map("leaflet-map", { scrollWheelZoom: false })
-                .setView([16.25, -61.55], 10);
+                .setView([16.237, -61.530], 11);
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      maxZoom: 19,
+      maxZoom: 17,
       attribution: '&copy; OpenStreetMap contributors'
     }).addTo(map);
 
