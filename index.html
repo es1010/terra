@@ -42,6 +42,17 @@
     .no-scrollbar::-webkit-scrollbar { display: none; }
     .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
     #leaflet-map { height: 600px; width: 100%; }
+    /* Boutons lieux par défaut */
+.btn-place {
+  opacity: 0.6;
+  transition: opacity 0.3s ease, color 0.3s ease;
+}
+
+/* Quand actif : plein + texte blanc */
+.btn-place.active {
+  opacity: 1;
+  color: white;
+  }
   </style>
 </head>
 <body class="bg-gray-50 font-sans antialiased text-gray-800">
@@ -66,8 +77,8 @@
         <button data-place="moule" class="btn-place px-2 py-1 text-xs rounded-md font-medium bg-moule/20 text-moule hover:bg-moule/30">Le Moule – Salle Robert Loyson</button>
         <button data-place="saintclaude" class="btn-place px-2 py-1 text-xs rounded-md font-medium bg-saintclaude/20 text-saintclaude hover:bg-saintclaude/30">Saint‑Claude – Maison du Parc National</button>
         <button data-place="vieux" class="btn-place px-2 py-1 text-xs rounded-md font-medium bg-vieux/20 text-vieux hover:bg-vieux/30">Vieux‑Habitants – Chapiteau GwadaCircus</button>
-        <button data-place="baiemahault" class="btn-place px-2 py-1 text-xs rounded-md font-medium bg-baiemahault/20 text-white text-baiemahault hover:bg-baiemahault/90">Baie‑Mahault – Les Bonnifieurs (Jarry)</button>
-        <button data-place="goyave" class="btn-place px-2 py-1 text-xs rounded-md font-medium bg-goyave/20 text-white text-goyave hover:bg-goyave/90">Goyave – An Jaden</button>
+        <button data-place="baiemahault" class="btn-place px-2 py-1 text-xs rounded-md font-medium bg-baiemahault/20 text-baiemahault hover:bg-baiemahault/90">Baie‑Mahault – Les Bonnifieurs (Jarry)</button>
+        <button data-place="goyave" class="btn-place px-2 py-1 text-xs rounded-md font-medium bg-goyave/20 text-goyave hover:bg-goyave/90">Goyave – An Jaden</button>
         <button data-place="sainterose" class="btn-place px-2 py-1 text-xs rounded-md font-medium bg-sainterose/20 text-sainterose hover:bg-sainterose/30">Sainte‑Rose – Sucrerie de Nogent</button>
       </div>
     </section>
