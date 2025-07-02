@@ -42,6 +42,28 @@
     .no-scrollbar::-webkit-scrollbar { display: none; }
     .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
     #leaflet-map { height: 600px; width: 100%; }
+    /* Boutons filtres lieux par défaut : un peu transparents */
+.btn-place {
+  opacity: 0.6; /* un peu "fade" quand pas sélectionné */
+  transition: opacity 0.3s ease;
+}
+
+/* Bouton lieu sélectionné : opaque */
+.btn-place.active {
+  opacity: 1; /* couleur pleine */
+}
+
+/* Couleurs spécifiques (à adapter si tu as des classes déjà) */
+.btn-place[data-place="baiemahault"] {
+  background-color: #007A33; /* vert Baie Mahault */
+  color: white;
+}
+
+.btn-place[data-place="goyave"] {
+  background-color: #FF6600; /* orange Goyave */
+  color: white;
+}
+
   </style>
 </head>
 <body class="bg-gray-50 font-sans antialiased text-gray-800">
@@ -66,8 +88,8 @@
         <button data-place="moule" class="btn-place px-2 py-1 text-xs rounded-md font-medium bg-moule/20 text-moule hover:bg-moule/30">Le Moule – Salle Robert Loyson</button>
         <button data-place="saintclaude" class="btn-place px-2 py-1 text-xs rounded-md font-medium bg-saintclaude/20 text-saintclaude hover:bg-saintclaude/30">Saint‑Claude – Maison du Parc National</button>
         <button data-place="vieux" class="btn-place px-2 py-1 text-xs rounded-md font-medium bg-vieux/20 text-vieux hover:bg-vieux/30">Vieux‑Habitants – Chapiteau GwadaCircus</button>
-        <button data-place="baiemahault" class="btn-place px-2 py-1 text-xs rounded-md font-medium bg-baiemahault/20 text-baiemahault hover:bg-baiemahault/30">Baie‑Mahault – Les Bonnifieurs (Jarry)</button>
-        <button data-place="goyave" class="btn-place px-2 py-1 text-xs rounded-md font-medium bg-goyave/20 text-goyave hover:bg-goyave/30">Goyave – An Jaden</button>
+        <button data-place="baiemahault" class="btn-place px-2 py-1 text-xs rounded-md font-medium bg-baiemahault text-baiemahault hover:bg-baiemahault/90">Baie‑Mahault – Les Bonnifieurs (Jarry)</button>
+        <button data-place="goyave" class="btn-place px-2 py-1 text-xs rounded-md font-medium bg-goyave text-goyave hover:bg-goyave/90">Goyave – An Jaden</button>
         <button data-place="sainterose" class="btn-place px-2 py-1 text-xs rounded-md font-medium bg-sainterose/20 text-sainterose hover:bg-sainterose/30">Sainte‑Rose – Sucrerie de Nogent</button>
       </div>
     </section>
@@ -273,11 +295,16 @@ let leafletMap;
 
   // Filtres par lieu
   document.querySelectorAll('.btn-place').forEach(b => {
-    b.addEventListener('click', () => {
-      const place = b.dataset.place;
-      toggleActive(b, '.btn-place', 'bg-green-600');
-      document.querySelectorAll('.event-card').forEach(card => {
-        card.hidden = place !== 'all' && card.dataset.place !== place;
+  b.addEventListener('click', () => {
+    const place = b.dataset.place;
+
+    /* ---- Gère l’état actif sans changer la couleur d’origine ---- */
+    document.querySelectorAll('.btn-place').forEach(btn => btn.classList.remove('active'));
+    b.classList.add('active');
+
+    /* ---- Filtre les cartes ---- */
+    document.querySelectorAll('.event-card').forEach(card => {
+      card.hidden = place !== 'all' && card.dataset.place !== place;
       });
     });
   });
