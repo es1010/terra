@@ -236,6 +236,22 @@
 
   <!-- JS Filtres + Carte -->
   <script>
+    function scrollToFirstVisibleCard () {
+    const first = document.querySelector('.event-card:not([hidden])');
+    if (first) first.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  // Ajoute l'appel ici dans les listeners :
+  document.querySelectorAll('.btn-day').forEach(b => {
+    b.addEventListener('click', () => {
+      const day = b.dataset.day;
+      toggleActive(b, '.btn-day', 'bg-green-600');
+      document.querySelectorAll('[data-day-section]').forEach(sec => {
+        sec.hidden = day !== 'all' && sec.dataset.daySection !== day;
+      });
+      scrollToFirstVisibleCard();
+    });
+  });
 let leafletMap;
   // Programme complet : show/hide
   document.getElementById('toggle-programme').addEventListener('click', () => {
