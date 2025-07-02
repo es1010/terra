@@ -294,6 +294,10 @@ let leafletMap;
       document.querySelectorAll('[data-day-section]').forEach(sec => {
         sec.hidden = day !== 'all' && sec.dataset.daySection !== day;
       });
+      document.querySelectorAll('.event-card').forEach(card => {
+  const sectionDay = card.closest('[data-day-section]').dataset.daySection;
+        card.hidden = day !== 'all' && sectionDay !== day;
+   });
       scrollToFirstVisibleCard();
     });
   });
