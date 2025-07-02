@@ -66,7 +66,7 @@
   <main class="container mx-auto px-4 py-6">
     <!-- Filtres -->
 <section class="mb-10 space-y-4 sticky top-0 z-30 bg-white pt-4 shadow-md">
-      <div class="flex overflow-x-auto gap-2 no-scrollbar">
+      <div class="flex flex-wrap gap-2">
         <button data-day="all" class="btn-day px-4 py-2 rounded-lg font-medium min-w-max bg-green-600 text-white">Tous les jours</button>
         <button data-day="11" class="btn-day px-4 py-2 rounded-lg font-medium min-w-max bg-green-100 text-green-800">11 juillet</button>
         <button data-day="12" class="btn-day px-4 py-2 rounded-lg font-medium min-w-max bg-green-100 text-green-800">12 juillet</button>
@@ -241,17 +241,14 @@
     if (first) first.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
-  // Ajoute l'appel ici dans les listeners :
-  document.querySelectorAll('.btn-day').forEach(b => {
-    b.addEventListener('click', () => {
-      const day = b.dataset.day;
-      toggleActive(b, '.btn-day', 'bg-green-600');
-      document.querySelectorAll('[data-day-section]').forEach(sec => {
-        sec.hidden = day !== 'all' && sec.dataset.daySection !== day;
-      });
-      scrollToFirstVisibleCard();
+  function toggleActive(activeBtn, selector, activeClass) {
+    document.querySelectorAll(selector).forEach(btn => {
+      btn.classList.remove(activeClass, 'text-white');
+      btn.classList.add('bg-green-100', 'text-green-800');
     });
-  });
+    activeBtn.classList.add(activeClass, 'text-white');
+    activeBtn.classList.remove('bg-green-100', 'text-green-800');
+  }
 let leafletMap;
   // Programme complet : show/hide
   document.getElementById('toggle-programme').addEventListener('click', () => {
@@ -297,6 +294,7 @@ let leafletMap;
       document.querySelectorAll('[data-day-section]').forEach(sec => {
         sec.hidden = day !== 'all' && sec.dataset.daySection !== day;
       });
+      scrollToFirstVisibleCard();
     });
   });
 
@@ -313,6 +311,7 @@ let leafletMap;
     document.querySelectorAll('.event-card').forEach(card => {
       card.hidden = place !== 'all' && card.dataset.place !== place;
       });
+    scrollToFirstVisibleCard();
     });
   });
   </script>
